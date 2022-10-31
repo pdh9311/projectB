@@ -1,0 +1,206 @@
+@import "normalize.css";
+@import "normalizePlus.css";
+
+.join-corporate {
+    width: 622px;
+    height: 860px;
+    margin-top: 40px;
+    padding: 43px 96px;
+}
+
+.join-title {
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #dadada;
+    padding-bottom:4px;
+    margin-bottom: 37px;
+}
+
+.agree,
+.select-auth,
+.go-auth,
+.id,
+.re-password,
+.email-cover,
+.business-number-cover,
+.select-period-cover {
+    margin-bottom: 14px;
+}
+
+.accordion {
+    height: 170px;
+}
+
+.precaution {
+    padding: 5px 2px 5px 16px;
+    color: #908F8F;
+    font-size: 10px;
+}
+
+.select-auth {
+    width: 100%;
+    height: 31px;
+    background-color: #F2F4FA;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.auth-phone, .auth-ipin {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+.auth-phone input,
+.auth-ipin input {
+    margin-right: 3px;
+}
+
+.go-auth,
+.id,
+.password,
+
+.email-cover,
+.business-number-cover {
+    height: 47px;
+    border: 1px solid #E3E3E3;
+    padding: 6px 16px;
+}
+.re-password {
+    height: 47px;
+    border-bottom: 1px solid #E3E3E3;
+    border-left: 1px solid #E3E3E3;
+    border-right: 1px solid #E3E3E3;
+    padding: 6px 16px;
+}
+
+.go-auth {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+
+}
+
+.go-auth span {
+    display: block;
+    font-size: 12px;
+}
+
+.go-auth button,
+.email-cover button {
+    border: 1px solid #10C6FF;
+    padding: 4px 16px;
+    font-size: 12px;
+    color: #10C6FF;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.id, .password, .re-password{
+    display: flex;
+    flex-direction: column;
+}
+
+.id span,
+.password span,
+.re-password span,
+.email span,
+.business-number-cover span {
+    font-size: 10px;
+    color: #908f8f;
+}
+
+.id input,
+.password input,
+.re-password input,
+.email input {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 14px;
+}
+
+.email-cover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.email {
+    display: flex;
+    flex-direction: column;
+}
+
+.business-number-cover {
+    display: flex;
+    flex-direction: column;
+}
+
+.business-number input {
+    display: inline;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    padding: 0 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.business-number input:nth-child(1) {
+    width:50px;
+}
+
+.business-number input:nth-child(2) {
+    width:40px;
+}
+
+.business-number input:nth-child(3) {
+    width:70px;
+}
+
+.text-period strong {
+    font-size: 12px;
+}
+
+
+.select-period {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 31px;
+    border-radius: 5px;
+    background-color: #f2f3fa;
+    font-size: 12px;
+}
+
+.select-period div {
+    display: flex;
+    align-items: center;
+}
+
+.select-period div > input {
+    margin-right: 3px;
+}
+
+.btn-join-complete {
+    width: 100%;
+    heigth: 39px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #10C6FF;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+

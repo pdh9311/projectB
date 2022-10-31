@@ -8,29 +8,31 @@
             <img src="/image/logo-nogo.svg" alt="로고">
         </div>
 
-        <div class="personal-corporate">
-            <ul>
-                <li class="personal-highlight">개인 회원</li>
-                <li>
-                    <div class="vr"></div>
-                </li>
-                <li>기업 회원</li>
-            </ul>
-        </div>
-
-        <div class="id">
-            <input class="input-id w-100" type="text" placeholder="아이디">
-        </div>
-        <div class="pw">
-            <input class="input-pw w-100" type="password" placeholder="비밀번호">
-            <div href="#">
-                <img class="eye" src="/image/eye-solid.svg" alt="비밀번호 보기">
+        <form action="" method="post">
+            <div class="personal-corporate">
+                <ul>
+                    <li class="personal-highlight">개인 회원</li>
+                    <li>
+                        <div class="vr"></div>
+                    </li>
+                    <li>기업 회원</li>
+                </ul>
             </div>
-        </div>
 
-        <div class="login-btn-cover">
-            <button class="login-btn w-100" type="submit">로그인</button>
-        </div>
+            <div class="id">
+                <input class="input-id w-100" type="text" placeholder="아이디">
+            </div>
+            <div class="pw">
+                <input class="input-pw w-100" type="password" placeholder="비밀번호">
+                <div href="#">
+                    <img class="eye" src="/image/eye-solid.svg" alt="비밀번호 보기">
+                </div>
+            </div>
+
+            <div class="login-btn-cover">
+                <button class="login-btn w-100" type="submit">로그인</button>
+            </div>
+        </form>
 
         <div class="find-or-join d-flex justify-content-center">
 
@@ -69,6 +71,8 @@
 
     </div>
 </section>
+
+
 <script src="/js/login.js"></script>
 <footer th:replace="~{fragment/footer::bootstrap}"></footer>
 </body>

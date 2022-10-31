@@ -23,5 +23,5 @@ corporate.addEventListener('click', function () {
     }
     socialLogin.style.display = 'none';
     joinAnchor.innerHTML = "기업 회원가입";
-    joinAnchor.setAttribute('href', "#");
+    joinAnchor.setAttribute('href', "/join/corporate");
 });

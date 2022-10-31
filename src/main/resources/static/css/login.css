@@ -1,8 +1,5 @@
 @import "normalize.css";
-
-input:hover, input:active, input:focus {
-    outline: none;
-}
+@import "normalizePlus.css";
 
 .login-form {
     width: 474px;
