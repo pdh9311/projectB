@@ -27,6 +27,118 @@
     margin-bottom: 14px;
 }
 
+.agree-all {
+    height: 46px;
+    padding: 14px 16px;
+    border: 1px solid #dadada;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #F2F4FA;
+}
+
+.agree-select {
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+}
+
+.agree-service,
+.agree-personal-info,
+.agree-sms,
+.agree-email {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.agree-service,
+.agree-personal-info,
+.agree-sms {
+    margin-bottom: 4px;
+}
+
+.agree-all .checkbox-cover,
+.agree-service .checkbox-cover,
+.agree-personal-info .checkbox-cover,
+.agree-sms .checkbox-cover,
+.agree-email .checkbox-cover {
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+    margin-right: 10px;
+}
+
+.agree-all .checkbox-cover input[type="checkbox"],
+.agree-service .checkbox-cover input[type="checkbox"],
+.agree-personal-info .checkbox-cover input[type="checkbox"],
+.agree-sms .checkbox-cover input[type="checkbox"],
+.agree-email .checkbox-cover input[type="checkbox"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid #999;
+    appearance: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.agree-all .checkbox-cover input[type="checkbox"]:checked,
+.agree-service .checkbox-cover input[type="checkbox"]:checked,
+.agree-personal-info .checkbox-cover input[type="checkbox"]:checked,
+.agree-sms .checkbox-cover input[type="checkbox"]:checked,
+.agree-email .checkbox-cover input[type="checkbox"]:checked {
+    background-color: #5195f7;
+    border: none;
+}
+
+.agree-all .checkmark,
+.agree-service .checkmark,
+.agree-personal-info .checkmark,
+.agree-sms .checkmark,
+.agree-email .checkmark {
+    position: absolute;
+    top:45%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.agree-all .checkbox-cover .checkmark:after,
+.agree-service .checkbox-cover .checkmark:after,
+.agree-personal-info .checkbox-cover .checkmark:after,
+.agree-sms .checkbox-cover .checkmark:after,
+.agree-email .checkbox-cover .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.agree-all .checkbox-cover input:checked ~ .checkmark:after,
+.agree-service .checkbox-cover input:checked ~ .checkmark:after,
+.agree-personal-info .checkbox-cover input:checked ~ .checkmark:after,
+.agree-sms .checkbox-cover input:checked ~ .checkmark:after,
+.agree-email .checkbox-cover input:checked ~ .checkmark:after {
+    display: block;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+
+}
+
+.agree-service label > span,
+.agree-personal-info label > span{
+    color: red;
+}
+
 .accordion {
     height: 170px;
 }
@@ -59,7 +171,6 @@
 .go-auth,
 .id,
 .password,
-
 .email-cover,
 .business-number-cover {
     height: 47px;
