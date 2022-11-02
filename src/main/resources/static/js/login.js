@@ -1,5 +1,5 @@
-const worker = document.querySelector('.select-login ul li:nth-child(1)');
-const employer = document.querySelector('.select-login ul li:nth-child(3)');
+const worker = document.querySelector('.login-select ul li:nth-child(1)');
+const employer = document.querySelector('.login-select ul li:nth-child(3)');
 const socialLogin = document.querySelector('.social-login');
 const joinAnchor = document.querySelector('.join');
 

@@ -19,7 +19,7 @@ public class JoinController {
 
   @GetMapping("/employer")
   public String joinEmployer() {
-    return "joinEmployer";
+    return "join/employer";
   }
 
   @PostMapping("/employer")
