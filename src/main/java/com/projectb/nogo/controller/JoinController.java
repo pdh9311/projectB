@@ -1,6 +1,6 @@
 package com.projectb.nogo.controller;
 
-import com.projectb.nogo.dto.CorporateDto;
+import com.projectb.nogo.dto.EmployerDto;
 import com.projectb.nogo.service.JoinService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,15 +17,15 @@ public class JoinController {
 
   private final JoinService joinService;
 
-  @GetMapping("/corporate")
-  public String joinCorporate() {
-    return "joinCorporate";
+  @GetMapping("/employer")
+  public String joinEmployer() {
+    return "joinEmployer";
   }
 
-  @PostMapping("/corporate")
-  public String CompleteJoinCorporate(CorporateDto corporateDto) {
-    log.info("corporateDto={}", corporateDto);
-    joinService.save(corporateDto);
+  @PostMapping("/employer")
+  public String CompleteJoinEmployer(EmployerDto employerDto) {
+    log.info("corporateDto={}", employerDto);
+    joinService.save(employerDto);
     return "redirect:/";
   }
 }

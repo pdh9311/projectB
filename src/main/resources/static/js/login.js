@@ -1,27 +1,27 @@
-const personal = document.querySelector('.personal-corporate ul li:nth-child(1)');
-const corporate = document.querySelector('.personal-corporate ul li:nth-child(3)');
+const worker = document.querySelector('.select-login ul li:nth-child(1)');
+const employer = document.querySelector('.select-login ul li:nth-child(3)');
 const socialLogin = document.querySelector('.social-login');
-const joinAnchor = document.querySelector('.join > a');
+const joinAnchor = document.querySelector('.join');
 
-personal.addEventListener('click', function () {
-    if (this.classList.contains("personal-highlight") == false) {
-        this.classList.add("personal-highlight");
+worker.addEventListener('click', function () {
+    if (this.classList.contains("worker-highlight") == false) {
+        this.classList.add("worker-highlight");
     }
-    if (corporate.classList.contains('corporate-highlight') == true) {
-        corporate.classList.remove("corporate-highlight");
+    if (employer.classList.contains('employer-highlight') == true) {
+        employer.classList.remove("employer-highlight");
     }
     socialLogin.style.display = 'block';
     joinAnchor.innerHTML = '개인 회원가입';
     joinAnchor.setAttribute('href', "#");
 });
-corporate.addEventListener('click', function () {
-    if (this.classList.contains('corporate-highlight') == false) {
-        this.classList.add('corporate-highlight');
+employer.addEventListener('click', function () {
+    if (this.classList.contains('employer-highlight') == false) {
+        this.classList.add('employer-highlight');
     }
-    if (personal.classList.contains('personal-highlight') == true) {
-        personal.classList.remove('personal-highlight');
+    if (worker.classList.contains('worker-highlight') == true) {
+        worker.classList.remove('worker-highlight');
     }
     socialLogin.style.display = 'none';
     joinAnchor.innerHTML = "기업 회원가입";
-    joinAnchor.setAttribute('href', "/join/corporate");
+    joinAnchor.setAttribute('href', "/join/employer");
 });

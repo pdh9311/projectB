@@ -6,111 +6,123 @@
     height: 681px;
     padding-left: 45px;
     padding-right: 45px;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
 }
 
 .logo {
     margin-top: 64px;
     margin-bottom: 28px;
+    display: flex;
+    justify-content: center;
 }
-.personal-highlight {
+
+.worker-highlight {
     border: 3px solid #16EAB7;
     border-radius: 5px;
 }
-.corporate-highlight {
+
+.employer-highlight {
     border: 3px solid #10C6FF;
     border-radius: 5px;
 }
-.personal-corporate {
+
+.login-select {
     height: 37px;
     margin-bottom: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.personal-corporate ul {
+
+.login-select ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    /*border-bottom: 1px solid #d9d9d9;*/
 }
 
-.personal-corporate ul li {
+.login-select ul li {
     display: inline;
     width: 50%;
 }
 
-.personal-corporate ul li:nth-child(1) {
+.login-select ul li:nth-child(1) {
     padding: 10px 15px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.personal-corporate ul li:nth-child(1):hover {
+.login-select ul li:nth-child(1):hover {
     border: 3px solid #16EAB7;
     border-radius: 5px;
 }
 
-.personal-corporate ul li:nth-last-child(1) {
+.login-select ul li:nth-last-child(1) {
     padding: 10px 15px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.personal-corporate ul li:nth-last-child(1):hover {
+.login-select ul li:nth-last-child(1):hover {
     border: 3px solid #10C6FF;
     border-radius: 5px;
 }
 
-.personal-corporate ul li > a {
+.login-select ul li > a {
     font-size: 14px;
     text-decoration: none;
     color: black;
 }
 
-.input-id, .input-pw {
+.id {
+    display: block;
+    width: 100%;
     height: 53px;
     padding: 18px 16px;
     border: 1px solid #d9d9d9;
     border-radius: 8px;
     font-size: 14px;
-}
-
-.input-id::placeholder, .input-pw::placeholder {
-    font-size: 14px;
-}
-.id {
     margin-bottom: 9px;
 }
 
-.login-btn-cover {
-    margin-top: 28px;
-    margin-bottom: 15px;
+.id::placeholder,
+.pw input[type="password"]::placeholder {
+    font-size: 14px;
 }
 
-.login-btn {
-    height: 47px;
-    padding: 15px;
-    border: 1px solid #d9d9d9;
-    border-radius: 8px;
+.id:hover, .id:active, .id:focus,
+.pw input[type="password"]:hover, .pw input[type="password"]:active, .pw input[type="password"]:focus {
+    border: 2px solid #6AB5EA;
 }
 
 .pw {
     position: relative;
 }
 
-.eye {
+.pw input[type="password"] {
+    height: 53px;
+    padding: 18px 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.pw img {
     position: absolute;
     top: 50%;
     right: 3%;
     transform: translate(-50%, -50%);
     width: 19px;
     height: 15px;
+    cursor: pointer;
 }
 
-.input-id:hover, .input-id:active, .input-id:focus,
-.input-pw:hover, .input-pw:active, .input-pw:focus {
-    border: 2px solid #6AB5EA;
-}
-
-.login-btn {
+.btn-login {
+    margin-top: 28px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 47px;
+    padding: 15px;
+    border: 1px solid #d9d9d9;
     background: conic-gradient(from 97.16deg at 14.68% 33.02%, #16EAB7 -1.56deg, #10C6FF 3.28deg, #FF3030 176.95deg, #FFE820 182.7deg, #16EAB7 358.44deg, #10C6FF 363.28deg);
     border-radius: 5px;
     color: #2c3034;
@@ -119,13 +131,15 @@
 
 .find-or-join {
     margin: 15px 0 24px 0;
+    display: flex;
+    justify-content: center;
 }
 
-.find-id, .find-pw, .join {
+a.find-id, a.find-pw, a.join {
+    display: block;
+    text-decoration: none;
+    color: black;
     padding: 0 10px;
-}
-
-.find-id > a, .find-pw > a, .join > a {
     font-size: 14px;
 }
 
@@ -135,7 +149,8 @@
     position: relative;
 }
 
-.social-login-text {
+.social-login > span {
+    display: block;
     position: absolute;
     top: 0%;
     left: 50%;
@@ -146,39 +161,32 @@
     color: #908F8F;
 }
 
-.naver-social-login, .kakao-social-login {
+.social-login a.naver,
+.social-login a.kakao {
     display: flex;
     align-items: center;
+    text-decoration: none;
     height: 40px;
     padding: 11px 16px;
     border-radius: 5px;
     cursor: pointer;
 }
-.naver-cover {
-    margin-bottom: 10px;
-}
-.naver-social-login {
-    background-color: #03C75A;
-}
 
-.kakao-social-login {
-    background-color: #FEE500;
-}
-
-.naver-text, .kakao-text {
+.social-login a.naver b,
+.social-login a.kakao b {
+    display: block;
     width: 100%;
     text-align: center;
     font-size: 14px;
 }
 
-.naver-text > span, .kakao-text > span {
-    font-weight: bolder;
-}
-
-.naver-text > span {
+.social-login a.naver {
+    background-color: #03C75A;
     color: white;
+    margin-bottom: 10px;
 }
 
-.kakao-text > span {
+.social-login a.kakao {
+    background-color: #FEE500;
     color: #191919;
 }

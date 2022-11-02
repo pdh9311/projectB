@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CorporateDto {
+public class EmployerDto {
 
   private Boolean agreeService;
   private Boolean agreePersonalInfo;

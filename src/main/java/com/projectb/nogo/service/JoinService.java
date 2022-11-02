@@ -1,6 +1,6 @@
 package com.projectb.nogo.service;
 
-import com.projectb.nogo.dto.CorporateDto;
+import com.projectb.nogo.dto.EmployerDto;
 import com.projectb.nogo.repository.JoinRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,7 @@ public class JoinService {
 
   private final JoinRepository joinRepository;
 
-  public void save(CorporateDto corporateDto) {
-    joinRepository.save(corporateDto);
+  public void save(EmployerDto employerDto) {
+    joinRepository.save(employerDto);
   }
 }
