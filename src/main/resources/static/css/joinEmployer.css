@@ -1,11 +1,13 @@
 @import "normalize.css";
 @import "normalizePlus.css";
 
-.join-corporate {
+.join-employer {
     width: 622px;
     height: 860px;
     margin-top: 40px;
     padding: 43px 96px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
 }
 
 .join-title {
@@ -17,13 +19,13 @@
 }
 
 .agree,
-.select-auth,
-.go-auth,
+.radio-select-box,
+.auth,
 .id,
 .re-password,
-.email-cover,
-.business-number-cover,
-.select-period-cover {
+.email-box,
+.business-number-box,
+.period-select-box {
     margin-bottom: 14px;
 }
 
@@ -62,22 +64,22 @@
     margin-bottom: 4px;
 }
 
-.agree-all .checkbox-cover,
-.agree-service .checkbox-cover,
-.agree-personal-info .checkbox-cover,
-.agree-sms .checkbox-cover,
-.agree-email .checkbox-cover {
+.agree-all .checkbox-box,
+.agree-service .checkbox-box,
+.agree-personal-info .checkbox-box,
+.agree-sms .checkbox-box,
+.agree-email .checkbox-box {
     width: 1rem;
     height: 1rem;
     position: relative;
     margin-right: 10px;
 }
 
-.agree-all .checkbox-cover input[type="checkbox"],
-.agree-service .checkbox-cover input[type="checkbox"],
-.agree-personal-info .checkbox-cover input[type="checkbox"],
-.agree-sms .checkbox-cover input[type="checkbox"],
-.agree-email .checkbox-cover input[type="checkbox"] {
+.agree-all .checkbox-box input[type="checkbox"],
+.agree-service .checkbox-box input[type="checkbox"],
+.agree-personal-info .checkbox-box input[type="checkbox"],
+.agree-sms .checkbox-box input[type="checkbox"],
+.agree-email .checkbox-box input[type="checkbox"] {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -88,11 +90,11 @@
     transition: background 0.2s;
 }
 
-.agree-all .checkbox-cover input[type="checkbox"]:checked,
-.agree-service .checkbox-cover input[type="checkbox"]:checked,
-.agree-personal-info .checkbox-cover input[type="checkbox"]:checked,
-.agree-sms .checkbox-cover input[type="checkbox"]:checked,
-.agree-email .checkbox-cover input[type="checkbox"]:checked {
+.agree-all .checkbox-box input[type="checkbox"]:checked,
+.agree-service .checkbox-box input[type="checkbox"]:checked,
+.agree-personal-info .checkbox-box input[type="checkbox"]:checked,
+.agree-sms .checkbox-box input[type="checkbox"]:checked,
+.agree-email .checkbox-box input[type="checkbox"]:checked {
     background-color: #5195f7;
     border: none;
 }
@@ -108,21 +110,21 @@
     transform: translate(-50%, -50%);
 }
 
-.agree-all .checkbox-cover .checkmark:after,
-.agree-service .checkbox-cover .checkmark:after,
-.agree-personal-info .checkbox-cover .checkmark:after,
-.agree-sms .checkbox-cover .checkmark:after,
-.agree-email .checkbox-cover .checkmark:after {
+.agree-all .checkbox-box .checkmark:after,
+.agree-service .checkbox-box .checkmark:after,
+.agree-personal-info .checkbox-box .checkmark:after,
+.agree-sms .checkbox-box .checkmark:after,
+.agree-email .checkbox-box .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-.agree-all .checkbox-cover input:checked ~ .checkmark:after,
-.agree-service .checkbox-cover input:checked ~ .checkmark:after,
-.agree-personal-info .checkbox-cover input:checked ~ .checkmark:after,
-.agree-sms .checkbox-cover input:checked ~ .checkmark:after,
-.agree-email .checkbox-cover input:checked ~ .checkmark:after {
+.agree-all .checkbox-box input:checked ~ .checkmark:after,
+.agree-service .checkbox-box input:checked ~ .checkmark:after,
+.agree-personal-info .checkbox-box input:checked ~ .checkmark:after,
+.agree-sms .checkbox-box input:checked ~ .checkmark:after,
+.agree-email .checkbox-box input:checked ~ .checkmark:after {
     display: block;
     width: 5px;
     height: 10px;
@@ -149,7 +151,7 @@
     font-size: 10px;
 }
 
-.select-auth {
+.radio-select-box {
     width: 100%;
     height: 31px;
     background-color: #F2F4FA;
@@ -158,21 +160,21 @@
     align-items: center;
 }
 
-.auth-phone, .auth-ipin {
+.radio-select-box span {
     display: flex;
     align-items: center;
     font-size: 12px;
 }
-.auth-phone input,
-.auth-ipin input {
+
+.radio-select-box span input[type="radio"] {
     margin-right: 3px;
 }
 
-.go-auth,
+.auth,
 .id,
 .password,
-.email-cover,
-.business-number-cover {
+.email-box,
+.business-number-box {
     height: 47px;
     border: 1px solid #E3E3E3;
     padding: 6px 16px;
@@ -185,7 +187,7 @@
     padding: 6px 16px;
 }
 
-.go-auth {
+.auth {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -193,13 +195,12 @@
 
 }
 
-.go-auth span {
-    display: block;
+.auth span {
     font-size: 12px;
 }
 
-.go-auth button,
-.email-cover button {
+.auth button,
+.email-box button {
     border: 1px solid #10C6FF;
     padding: 4px 16px;
     font-size: 12px;
@@ -217,7 +218,7 @@
 .password span,
 .re-password span,
 .email span,
-.business-number-cover span {
+.business-number-box span {
     font-size: 10px;
     color: #908f8f;
 }
@@ -232,7 +233,7 @@
     font-size: 14px;
 }
 
-.email-cover {
+.email-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -243,7 +244,7 @@
     flex-direction: column;
 }
 
-.business-number-cover {
+.business-number-box {
     display: flex;
     flex-direction: column;
 }
@@ -269,28 +270,8 @@
     width:70px;
 }
 
-.text-period strong {
+.text-period-box strong {
     font-size: 12px;
-}
-
-
-.select-period {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 31px;
-    border-radius: 5px;
-    background-color: #f2f3fa;
-    font-size: 12px;
-}
-
-.select-period div {
-    display: flex;
-    align-items: center;
-}
-
-.select-period div > input {
-    margin-right: 3px;
 }
 
 .btn-join-complete {
