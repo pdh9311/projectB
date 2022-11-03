@@ -28,4 +28,9 @@ public class JoinController {
     joinService.save(employerDto);
     return "redirect:/";
   }
+
+  @GetMapping("/worker")
+  public String joinWorkerPage() {
+    return "join/worker";
+  }
 }
