@@ -1,7 +1,7 @@
 package com.projectb.nogo.dto;
 
 import com.projectb.nogo.constant.AuthMethod;
-import com.projectb.nogo.constant.Period;
+import com.projectb.nogo.constant.ExpirationPeriod;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,8 +20,8 @@ public class EmployerDto {
   private Boolean authResult;
 
   private String id;
-  private String password;
-  private String rePassword;
+  private String pw;
+  private String rePw;
 
   private String email;
 
@@ -29,5 +29,5 @@ public class EmployerDto {
   private String BusinessNumber2;
   private String BusinessNumber3;
 
-  private Period periods;
+  private ExpirationPeriod expirationPeriod;
 }

@@ -91,11 +91,11 @@
 
       <div class="password">
         <span>비밀번호(8~16자 영문, 숫자, 특수문자 조합)</span>
-        <input type="password" name="password">
+        <input type="password" name="pw">
       </div>
       <div class="re-password">
         <span>비밀번호 재입력</span>
-        <input type="password" name="re-password">
+        <input type="password" name="rePw">
       </div>
 
       <div class="email-box">
@@ -123,15 +123,15 @@
         </div>
         <div class="radio-select-box">
           <span>
-            <input type="radio" id="one-year" name="periods" value="oneYear">
+            <input type="radio" id="one-year" name="expirationPeriod" value="1">
             <label for="one-year">1년</label>
           </span>
           <span>
-            <input type="radio" id="three-year" name="periods" value="threeYear">
+            <input type="radio" id="three-year" name="expirationPeriod" value="3">
             <label for="three-year">3년</label>
           </span>
           <span>
-            <input type="radio" id="until-withdrawal" name="periods" value="untilWithdrawal">
+            <input type="radio" id="until-withdrawal" name="expirationPeriod" value="-1">
             <label for="until-withdrawal">회원탈퇴시</label>
           </span>
         </div>
