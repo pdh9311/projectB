@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS employer(
     id varchar(100) NOT NULL,
     pw varchar(100) NOT NULL,
     email varchar(100),
-#     phone varchar(100) NOT NULL,
+--  phone varchar(100) NOT NULL,
     business_number varchar(100) NOT NULL,
     expiration_period datetime NOT NULL,
     agree_service boolean NOT NULL,
