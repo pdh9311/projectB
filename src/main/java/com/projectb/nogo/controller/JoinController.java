@@ -1,13 +1,17 @@
 package com.projectb.nogo.controller;
 
+import com.projectb.nogo.domain.WorkerHistoryVO;
+import com.projectb.nogo.domain.WorkerPersonalVO;
+import com.projectb.nogo.domain.WorkerPhotoVO;
 import com.projectb.nogo.dto.EmployerDto;
+import com.projectb.nogo.dto.WorkerDTO;
 import com.projectb.nogo.service.JoinService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -32,5 +36,21 @@ public class JoinController {
   @GetMapping("/worker")
   public String joinWorkerPage() {
     return "join/worker";
+  }
+
+  @PostMapping("/worker")
+  public String CompleteJoinWorker(@RequestBody WorkerDTO workerDto) {
+
+    WorkerPersonalVO personal = workerDto.getPersonal();
+    List<WorkerHistoryVO> historyList = workerDto.getHistoryList();
+    List<WorkerPhotoVO> photoList = workerDto.getPhotoList();
+    log.info("personal : {}", personal);
+    log.info("historyList : {}", historyList);
+    log.info("photoList : {}", photoList);
+
+    joinService.workerPersonal(personal);
+    //joinService.workerHistorys(historyList);
+    //joinService.workerPhotos(photoList);
+    return "redirect:/";
   }
 }

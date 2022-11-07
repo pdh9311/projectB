@@ -1,4 +1,4 @@
-@import "nomalize.css";
+@import "normalize.css";
 
 input:focus {
     outline: none;
@@ -381,7 +381,7 @@ input[type="checkbox"] {
     font-size: 12px;
 }
 
-.history-value .history-date {
+.history-value .history-start-date ,.history-value .history-end-date {
     width: 65px;
     font-size: 10px;
     padding: 0;
@@ -495,4 +495,57 @@ input[type="checkbox"] {
 /*.id-wrap2 input:focus {*/
 /*    outline: none;*/
 /*    border: 1px solid #16EAB7;*/
+/*}*/
+
+
+/*==================================*/
+
+/*.outer-box {*/
+/*    display: flex;*/
+/*    padding: 10px 16px;*/
+/*    border: 1px solid gray;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.checked-outer-box {*/
+/*    width: 1rem;*/
+/*    height: 1rem;*/
+/*    position: relative;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+/*.checked-outer-box input[type="checkbox"] {*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    appearance: none;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    border: 1px solid black;*/
+/*    border-radius: 50%;*/
+/*    position: absolute;*/
+/*    cursor: pointer;*/
+/*    transition: 0.5s;*/
+/*}*/
+
+/*.checked-outer-box input[type="checkbox"]:checked {*/
+/*    background-color: #16EAB7;*/
+/*    border: none;*/
+/*}*/
+
+/*.check-mark:after {*/
+/*    content: "";*/
+/*    display: none;*/
+/*}*/
+
+/*.checked-outer-box input[type="checkbox"]:checked ~ .check-mark:after {*/
+/*    display: block;*/
+/*    content: "";*/
+/*    width: 5px;*/
+/*    height: 10px;*/
+/*    border-right: 1px solid white;*/
+/*    border-bottom: 1px solid white;*/
+/*    position: absolute;*/
+/*    transform: translate(-50%, -50%) rotate(45deg);*/
+/*    top: 45%;*/
+/*    left: 50%;*/
 /*}*/
