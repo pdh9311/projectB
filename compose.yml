@@ -1,7 +1,6 @@
 services:
   database:
     image: mariadb
-    container_name: mariadb
     restart: always
     environment:
       - MYSQL_DATABASE=test
@@ -22,7 +21,6 @@ services:
     depends_on:
       - database
     build: .
-    container_name: nogo
     restart: always
     ports:
       - 8080:8080
