@@ -14,18 +14,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let submitDate = {};
 
-        const agreeService = document.getElementById("agreeService").checked;
-        const agreePersonalInfo = document.getElementById("agreePersonalInfo").checked;
-        const agreeSms = document.getElementById("agreeSms").checked;
-        const agreeEmail = document.getElementById("agreeEmail").checked;
+        const agreeService = document.getElementById("agree-service").checked;
+        const agreePersonalInfo = document.getElementById("agree-personal-info").checked;
+        const agreeSms = document.getElementById("agree-sms").checked;
+        const agreeEmail = document.getElementById("agree-email").checked;
         const id = document.getElementById("id").value;
-        const password = document.getElementById("password").value;
-        const rePassword = document.getElementById("rePassword").value;
+        const password = document.getElementById("pw").value;
+        const rePassword = document.getElementById("re-pw").value;
         const email = document.getElementById("email").value;
         const name = document.getElementById("name").value;
         const phone = document.getElementById("phone").value;
         const adr = document.getElementById("adr").value;
-        const adrDetail = document.getElementById("adrDetail").value;
+        const adrDetail = document.getElementById("adr-detail").value;
         const historyStartDate = document.querySelectorAll(".history-start-date")[0].value;
         const historyEndDate = document.querySelectorAll(".history-end-date")[0].value;
         const historyContent = document.querySelectorAll(".history-content")[0].value;
