@@ -21,3 +21,8 @@ exec-app :
 
 clean : down
 	docker rmi -f `docker images -q`
+
+build :
+	./gradlew build
+
+.PHONY : ps, down, logs, exec-db, exec-app, clean, build
