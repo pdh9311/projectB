@@ -2,14 +2,19 @@ NAME=nogo
 
 all: $(NAME)
 
-$(NAME) :
-	docker compose up -d --build --force-recreate
+$(NAME) : build up
+
+build :
+	./gradlew build
+
+up :
+	docker compose up -d
 
 ps :
 	docker compose ps
 
 down :
-	docker compose down -v --rmi all
+	docker compose down
 
 logs :
 	docker compose logs database
@@ -28,15 +33,15 @@ exec-db :
 exec-app :
 	docker compose exec application /bin/bash
 
-
 clean : down
+	rm -rf build
+	docker compose down -v --rmi all
 	docker system prune --volumes --all --force
 	docker network prune --force
 	docker volume prune --force
 
-re : clean all
+re : clean
+	docker compose up -d --build --force-recreate
 
-build :
-	./gradlew build
 
-.PHONY : ps, down, logs, logsf, top, exec-db, exec-app, clean, re, build
+.PHONY :  build, up, ps, down, logs, logsf, top, exec-db, exec-app, clean, re
