@@ -1,148 +1,139 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragment/head::head2(~{::title}, ~{::link})}">
-  <meta charset="UTF-8">
-  <title>기업 회원 가입</title>
-  <link rel="stylesheet" href="/css/joinEmployer.css">
+    <meta charset="UTF-8">
+    <title>기업 회원 가입</title>
+    <link rel="stylesheet" href="/css/joinEmployer.css">
 </head>
 <body>
 <nav></nav>
 <section class="container d-flex justify-content-center align-items-center">
-  <div class="join-employer">
-    <form action="/join/employer" th:action method="post">
+    <div class="join-employer">
+        <form action="/join/employer" th:action method="post">
 
-      <h4 class="join-title">기업 회원 가입</h4>
+            <h4 class="join-title">기업 회원 가입</h4>
 
-      <div class="agree">
+            <div class="agree">
+                <div class="agree-all">
+                    <div class="checkbox-box">
+                        <input type="checkbox" name="agreeAll" id="agree-all">
+                        <span class="checkmark"></span>
+                    </div>
+                    <label for="agree-all">이용약관에 전체 동의</label>
+                </div>
 
-        <div class="agree-all">
+                <div class="agree-select">
+                    <div class="agree-service">
+                        <div class="checkbox-box">
+                            <input type="checkbox" name="agreeService" id="agree-service">
+                            <span class="checkmark"></span>
+                        </div>
+                        <label for="agree-service"><span>[필수]</span> 서비스 이용약관 동의</label>
+                    </div>
 
-          <div class="checkbox-box">
-            <input type="checkbox" name="agreeAll" id="agree-all">
-            <span class="checkmark"></span>
-          </div>
-          <label for="agree-all">이용약관에 전체 동의</label>
+                    <div class="agree-personal-info">
+                        <div class="checkbox-box">
+                            <input type="checkbox" name="agreePersonalInfo" id="agree-personal-info">
+                            <span class="checkmark"></span>
+                        </div>
+                        <label for="agree-personal-info"><span>[필수]</span> 개인정보 수집 및 이용 동의</label>
+                    </div>
 
-        </div>
-        <div class="agree-select">
+                    <div class="agree-sms">
+                        <div class="checkbox-box">
+                            <input type="checkbox" name="agreeSms" id="agree-sms">
+                            <span class="checkmark"></span>
+                        </div>
+                        <label for="agree-sms">[선택] 광고성 정보 수신 동의(SMS/MMS)</label>
+                    </div>
 
-          <div class="agree-service">
+                    <div class="agree-email">
+                        <div class="checkbox-box">
+                            <input type="checkbox" name="agreeEmail" id="agree-email">
+                            <span class="checkmark"></span>
+                        </div>
+                        <label for="agree-email">[선택] 광고성 정보 수신 동의(이메일)</label>
+                    </div>
+                </div>
 
-            <div class="checkbox-box">
-              <input type="checkbox" name="agreeService" id="agree-service">
-              <span class="checkmark"></span>
+                <div class="precaution">*개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으며 동의 거부 시에는 회원가입이 불가합니다.</div>
             </div>
-            <label for="agree-service"><span>[필수]</span> 서비스 이용약관 동의</label>
 
-          </div>
-          <div class="agree-personal-info">
-
-            <div class="checkbox-box">
-              <input type="checkbox" name="agreePersonalInfo" id="agree-personal-info">
-              <span class="checkmark"></span>
+            <div class="radio-select-box">
+                <span>
+                  <input type="radio" id="auth-phone" name="authMethod" value="phone" checked>
+                  <label for="auth-phone">휴대폰 인증</label>
+                </span>
+                <span>
+                  <input type="radio" id="auth-ipin" name="authMethod" value="ipin">
+                  <label for="auth-ipin">아이핀(i-PIN) + 휴대폰 인증</label>
+                </span>
             </div>
-            <label for="agree-personal-info"><span>[필수]</span> 개인정보 수집 및 이용 동의</label>
-
-          </div>
-          <div class="agree-sms">
-
-            <div class="checkbox-box">
-              <input type="checkbox" name="agreeSms" id="agree-sms">
-              <span class="checkmark"></span>
+            <div class="auth">
+                <span>본인명의 휴대폰으로 인증 가능</span>
+                <button>인증하기</button>
             </div>
-            <label for="agree-sms">[선택] 광고성 정보 수신 동의(SMS/MMS)</label>
 
-          </div>
-          <div class="agree-email">
-
-            <div class="checkbox-box">
-              <input type="checkbox" name="agreeEmail" id="agree-email">
-              <span class="checkmark"></span>
+            <div class="id">
+                <span>아이디(4~15자 영문, 숫자)</span>
+                <input type="text" name="id">
             </div>
-            <label for="agree-email">[선택] 광고성 정보 수신 동의(이메일)</label>
 
-          </div>
+            <div class="password">
+                <span>비밀번호(8~16자 영문, 숫자, 특수문자 조합)</span>
+                <input type="password" name="pw">
+            </div>
+            <div class="re-password">
+                <span>비밀번호 재입력</span>
+                <input type="password" name="rePw">
+            </div>
 
-        </div>
+            <div class="email-box">
+                <div class="email">
+                    <span>이메일</span>
+                    <input type="email" name="email">
+                </div>
+                <button>확인</button>
+            </div>
 
-        <div class="precaution">*개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으며 동의 거부 시에는 회원가입이 불가합니다.</div>
-      </div>
+            <!-- 000-00-00000-->
+            <div class="business-number-box">
+                <span>사업자 번호</span>
+                <div class="business-number">
+                    <input type="text" name="businessNumber1"> -
+                    <input type="text" name="businessNumber2"> -
+                    <input type="text" name="businessNumber3">
+                </div>
+            </div>
 
-      <div class="radio-select-box">
-        <span>
-          <input type="radio" id="auth-phone" name="authMethod" value="phone">
-          <label for="auth-phone">휴대폰 인증</label>
-        </span>
-        <span>
-          <input type="radio" id="auth-ipin" name="authMethod" value="ipin">
-          <label for="auth-ipin">아이핀(i-PIN) + 휴대폰 인증</label>
-        </span>
-      </div>
+            <div class="period-select-box">
+                <div class="text-period-box">
+                    <strong>개인정보 유효기간 선택</strong>
+                    <img src="/image/circle-question-regular.svg" alt="개인정보 유효기간 선택 설명">
+                </div>
+                <div class="radio-select-box">
+                    <span>
+                        <input type="radio" id="one-year" name="expirationPeriod" value="1">
+                        <label for="one-year">1년</label>
+                    </span>
+                    <span>
+                        <input type="radio" id="three-year" name="expirationPeriod" value="3">
+                        <label for="three-year">3년</label>
+                    </span>
+                    <span>
+                        <input type="radio" id="until-withdrawal" name="expirationPeriod" value="-1" checked>
+                        <label for="until-withdrawal">회원탈퇴시</label>
+                    </span>
+                </div>
+            </div>
 
-      <div class="auth">
-        <span>본인명의 휴대폰으로 인증 가능</span>
-        <button>인증하기</button>
-      </div>
+            <button class="btn-join-complete">가입하기</button>
+        </form>
 
-      <div class="id">
-        <span>아이디(4~15자 영문, 숫자)</span>
-        <input type="text" name="id">
-      </div>
-
-      <div class="password">
-        <span>비밀번호(8~16자 영문, 숫자, 특수문자 조합)</span>
-        <input type="password" name="pw">
-      </div>
-      <div class="re-password">
-        <span>비밀번호 재입력</span>
-        <input type="password" name="rePw">
-      </div>
-
-      <div class="email-box">
-        <div class="email">
-          <span>이메일</span>
-          <input type="email" name="email">
-        </div>
-        <button>확인</button>
-      </div>
-
-      <!-- 000-00-00000-->
-      <div class="business-number-box">
-        <span>사업자 번호</span>
-        <div class="business-number">
-          <input type="text" name="businessNumber1"> -
-          <input type="text" name="businessNumber2"> -
-          <input type="text" name="businessNumber3">
-        </div>
-      </div>
-
-      <div class="period-select-box">
-        <div class="text-period-box">
-          <strong>개인정보 유효기간 선택</strong>
-          <img src="/image/circle-question-regular.svg" alt="개인정보 유효기간 선택 설명">
-        </div>
-        <div class="radio-select-box">
-          <span>
-            <input type="radio" id="one-year" name="expirationPeriod" value="1">
-            <label for="one-year">1년</label>
-          </span>
-          <span>
-            <input type="radio" id="three-year" name="expirationPeriod" value="3">
-            <label for="three-year">3년</label>
-          </span>
-          <span>
-            <input type="radio" id="until-withdrawal" name="expirationPeriod" value="-1">
-            <label for="until-withdrawal">회원탈퇴시</label>
-          </span>
-        </div>
-      </div>
-
-      <button class="btn-join-complete">가입하기</button>
-    </form>
-
-  </div>
+    </div>
 </section>
 
+<script src="/js/employer.js"></script>
 <footer th:replace="~{fragment/footer::bootstrap}"></footer>
 </body>
 </html>
