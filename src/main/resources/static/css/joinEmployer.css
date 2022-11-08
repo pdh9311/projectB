@@ -15,7 +15,8 @@
     text-align: center;
     border-bottom: 1px solid #dadada;
     padding-bottom:4px;
-    margin-bottom: 37px;
+    /*margin-bottom: 37px;*/
+    margin-bottom: 0;
 }
 
 .agree,
@@ -286,4 +287,13 @@
     background-color: #10C6FF;
     font-size: 12px;
     font-weight: bold;
+}
+
+.error-msg {
+    color: red;
+    font-size: 14px;
+    font-style: italic;
+    padding: 5px 16px;
+    height: 37px;
+    width: 100%;
 }

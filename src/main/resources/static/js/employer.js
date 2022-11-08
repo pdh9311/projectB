@@ -74,13 +74,13 @@ const id = document.querySelector('.id input[type="text"]');
 idBox.addEventListener('click', function () {
     id.focus();
 });
+// 아이디 유효성 검사 : 영문, 숫자 4 ~ 15자
+const idRegExp = /^[a-z0-9_-]\w{4,15}$/;
 id.addEventListener('focusout', function () {
-    // 아이디 유효성 검사 : 영문, 숫자 4 ~ 15자
-    const idRegExp = /^[a-zA-Z0-9]{4,15}$/;
-    if (!idRegExp.test(id.value)) {
+    const idRegExpResult = idRegExp.test(id.value);
+    if (!idRegExpResult) {
         idBox.style.border = "1px solid red";
         idTitle.style.color = "#dc3545";
-        id.value = '';
     } else {
         idBox.style.border = "1px solid #23dc3d";
         idTitle.style.color = "#198754";
@@ -102,10 +102,11 @@ passwordBox.addEventListener('click', function () {
     password.focus();
 });
 
+// 비밀번호 유효성 검사 : 영문, 숫자, 특수문자 8~16자
+const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[\[\]{}\\|;:'",<.>/?`~₩!@#$%^&*()_=+-])(?=.*[0-9]).{8,16}$/;
 password.addEventListener('focusout', function () {
-    // 비밀번호 유효성 검사 : 영문, 숫자, 특수문자 8~16자
-    const passwordRegExp = /^[a-zA-Z0-9{}\\|;:'",<.>/?`₩!@#$%^&*()-]{8,16}$/;
-    if (!passwordRegExp.test(password.value)) {
+    const passwordRegExpResult = passwordRegExp.test(password.value);
+    if (!passwordRegExpResult) {
         passwordBox.style.border = "1px solid red";
         passwordTitle.style.color = "#dc3545";
     } else {
@@ -128,9 +129,8 @@ rePasswordBox.addEventListener('click', function () {
     rePassword.focus();
 });
 rePassword.addEventListener('focusout', function () {
-    // 비밀번호 유효성 검사 : 영문, 숫자, 특수문자 8~16자
-    const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[\[\]{}\\|;:'",<.>/?`~₩!@#$%^&*()-])(?=.*[0-9]).{8,16}$/;
-    if (!passwordRegExp.test(rePassword.value) || password.value != rePassword.value) {
+    const passwordRegExpResult = passwordRegExp.test(password.value);
+    if (!passwordRegExpResult || password.value != rePassword.value) {
         rePasswordBox.style.border = "1px solid red";
         rePasswordTitle.style.color = "#dc3545";
     } else {
@@ -152,10 +152,11 @@ const email = document.querySelector('.email input[type="email"]');
 emailBox.addEventListener('click', function () {
     email.focus();
 });
+// email 유효성 검사
+const emailRegExp = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9._+-]+\.[a-zA-Z0-9_+-]+$/;
 email.addEventListener('focusout', function () {
-    // email 유효성 검사
-    const emailRegExp = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9._+-]+\.[a-zA-Z0-9_+-]+$/;
-    if (!emailRegExp.test(email.value)) {
+    const emailRegExpResult = emailRegExp.test(email.value);
+    if (!emailRegExpResult) {
         emailBox.style.border = "1px solid red";
         emailTitle.style.color = "#dc3545";
     } else {
@@ -177,17 +178,14 @@ const businessNumberTitle = document.querySelector('.business-number-box span');
 const businessNumber1 = document.querySelector('.business-number input[type="text"]:nth-child(1)');
 const businessNumber2 = document.querySelector('.business-number input[type="text"]:nth-child(2)');
 const businessNumber3 = document.querySelector('.business-number input[type="text"]:nth-child(3)');
-// businessNumberBox.addEventListener('click', function () {
-//     businessNumber1.focus();
-// });
 
 
 const businessNumber1RegExp = /^[0-9]{3}$/;
 const businessNumber2RegExp = /^[0-9]{2}$/;
 const businessNumber3RegExp = /^[0-9]{5}$/;
-
 businessNumber1.addEventListener('focusout', function() {
-    if (!businessNumber1RegExp.test(businessNumber1.value)) {
+    const businessNumber1RegExpResult = businessNumber1RegExp.test(businessNumber1.value);
+    if (!businessNumber1RegExpResult) {
         businessNumberBox.style.border = "1px solid red";
         businessNumberTitle.style.color = "#dc3545"
         businessNumber1.style.border = "1px solid red";
@@ -204,7 +202,8 @@ businessNumber1.addEventListener('focusout', function() {
 });
 
 businessNumber2.addEventListener('focusout', function() {
-    if (!businessNumber2RegExp.test(businessNumber2.value)) {
+    const businessNumber2RegExpResult = businessNumber2RegExp.test(businessNumber2.value);
+    if (!businessNumber2RegExpResult) {
         businessNumberBox.style.border = "1px solid red";
         businessNumberTitle.style.color = "#dc3545"
         businessNumber2.style.border = "1px solid red";
@@ -221,7 +220,8 @@ businessNumber2.addEventListener('focusout', function() {
 });
 
 businessNumber3.addEventListener('focusout', function() {
-    if (!businessNumber3RegExp.test(businessNumber3.value)) {
+    const businessNumber3RegExpResult = businessNumber3RegExp.test(businessNumber3.value);
+    if (!businessNumber3RegExpResult) {
         businessNumberBox.style.border = "1px solid red";
         businessNumberTitle.style.color = "#dc3545"
         businessNumber3.style.border = "1px solid red";
@@ -237,7 +237,6 @@ businessNumber3.addEventListener('focusout', function() {
     }
 });
 
-const joinBtn = document.querySelector('.btn-join-complete');
 businessNumber1.addEventListener('keydown', function (event) {
     if (event.keyCode == 13) {
         event.preventDefault();
@@ -255,4 +254,63 @@ businessNumber3.addEventListener('keydown', function (event) {
         event.preventDefault();
         joinBtn.focus();
     }
+});
+
+/* 가입 버튼 유효성 검사 */
+const joinBtn = document.querySelector('.btn-join-complete');
+const form = document.querySelector('form');
+joinBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    const authPhone = document.querySelector('#auth-phone');
+    const authIpin = document.querySelector('#auth-ipin');
+    const oneYear = document.querySelector('#one-year');
+    const threeYear = document.querySelector('#three-year');
+    const untilWithdrawal = document.querySelector('#until-withdrawal');
+    const idRegExpResult = idRegExp.test(id.value);
+    const passwordRegExpResult = passwordRegExp.test(password.value);
+    const emailRegExpResult = emailRegExp.test(email.value);
+    const businessNumber1RegExpResult = businessNumber1RegExp.test(businessNumber1.value);
+    const businessNumber2RegExpResult = businessNumber2RegExp.test(businessNumber2.value);
+    const businessNumber3RegExpResult = businessNumber3RegExp.test(businessNumber3.value);
+
+    const errorMsg = document.querySelector('.error-msg');
+    if (agreeService.checked != true || agreePersonalInfo.checked != true) {
+        console.log('이용약관 필수 동의 해주세요.');
+        errorMsg.innerHTML = '* 이용약관 필수 동의 해주세요.';
+        agreeService.focus();
+    } else if (!idRegExpResult) {
+        console.log('아이디는를 수정해주세요.');
+        errorMsg.innerHTML = '* 아이디는를 수정해주세요.';
+        idBox.style.border = "1px solid red";
+        idTitle.style.color = "#dc3545";
+        id.focus();
+    } else if (!passwordRegExpResult) {
+        console.log('비밀번호를 수정해주세요.');
+        errorMsg.innerHTML = '* 비밀번호를 수정해주세요.';
+        passwordBox.style.border = "1px solid red";
+        passwordTitle.style.color = "#dc3545";
+        password.focus();
+    } else if (password.value != rePassword.value) {
+        console.log('비밀번호 재확인을 수정해주세요.');
+        errorMsg.innerHTML = '* 비밀번호 재확인을 수정해주세요.';
+        rePasswordBox.style.border = "1px solid red";
+        rePasswordTitle.style.color = "#dc3545";
+        rePassword.focus();
+    } else if (!emailRegExpResult) {
+        console.log('이메일 형식이 잘 못 되었습니다.');
+        emailBox.style.border = "1px solid red";
+        emailTitle.style.color = "#dc3545";
+        errorMsg.innerHTML = '* 이메일 형식이 잘 못 되었습니다.';
+        email.focus();
+    } else if (!businessNumber1RegExpResult || !businessNumber2RegExpResult || !businessNumber3RegExpResult) {
+        console.log('사업자 번호가 잘못되었습니다.');
+        errorMsg.innerHTML = '* 사업자 번호가 잘못되었습니다.';
+        businessNumberBox.style.border = "1px solid red";
+        businessNumberTitle.style.color = "#dc3545"
+        businessNumber1.focus();
+    } else {
+        form.submit();
+    }
+
 });
