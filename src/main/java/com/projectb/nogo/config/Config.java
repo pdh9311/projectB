@@ -9,9 +9,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class Config implements WebMvcConfigurer {
 
-  @Override
-  public void addFormatters(FormatterRegistry registry) {
-    registry.addConverter(new StringToAuthMethod());
-    registry.addConverter(new StringToExpirationPeriod());
-  }
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new StringToAuthMethod());
+        registry.addConverter(new StringToExpirationPeriod());
+    }
 }

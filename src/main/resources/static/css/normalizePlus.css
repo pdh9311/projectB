@@ -1,3 +1,4 @@
 input:hover, input:active, input:focus {
     outline: none;
+    border: none;
 }

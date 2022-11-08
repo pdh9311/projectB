@@ -15,22 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class JoinController {
 
-  private final JoinService joinService;
+    private final JoinService joinService;
 
-  @GetMapping("/employer")
-  public String joinEmployer() {
-    return "join/employer";
-  }
+    @GetMapping("/employer")
+    public String joinEmployer() {
+        return "join/employer";
+    }
 
-  @PostMapping("/employer")
-  public String CompleteJoinEmployer(EmployerDto employerDto) {
-    log.info("corporateDto={}", employerDto);
-    joinService.save(employerDto);
-    return "redirect:/";
-  }
+    @PostMapping("/employer")
+    public String CompleteJoinEmployer(EmployerDto employerDto) {
+        log.info("corporateDto={}", employerDto);
+        joinService.save(employerDto);
+        return "redirect:/";
+    }
 
-  @GetMapping("/worker")
-  public String joinWorkerPage() {
-    return "join/worker";
-  }
+    @GetMapping("/worker")
+    public String joinWorkerPage() {
+        return "join/worker";
+    }
 }

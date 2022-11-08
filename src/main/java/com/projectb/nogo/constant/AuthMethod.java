@@ -1,16 +1,16 @@
 package com.projectb.nogo.constant;
 
 public enum AuthMethod {
-  PHONE("phone"), IPIN("ipin");
+    PHONE("phone"), IPIN("ipin");
 
-  private String method;
+    private String method;
 
-  AuthMethod(String method) {
-    this.method = method;
-  }
+    AuthMethod(String method) {
+        this.method = method;
+    }
 
-  public String getMethod() {
-    return method;
-  }
+    public String getMethod() {
+        return method;
+    }
 
 }

@@ -180,7 +180,9 @@
     padding: 6px 16px;
 }
 .re-password {
+    margin-top: 3px;
     height: 47px;
+
     border-bottom: 1px solid #E3E3E3;
     border-left: 1px solid #E3E3E3;
     border-right: 1px solid #E3E3E3;
@@ -242,6 +244,7 @@
 .email {
     display: flex;
     flex-direction: column;
+    width: 60%;
 }
 
 .business-number-box {
@@ -284,15 +287,3 @@
     font-size: 12px;
     font-weight: bold;
 }
-
-
-
-
-
-
-
-
-
-
-
-
