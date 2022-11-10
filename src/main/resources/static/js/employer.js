@@ -67,6 +67,13 @@ agreeEmailBox.addEventListener('click', function () {
     }
 });
 
+/* 본인인증 휴대폰 */
+const authBtn = document.querySelector('.auth button');
+authBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+    alert('아직 구현되지 않은 기능입니다.');
+});
+
 /* 아이디 */
 const idBox = document.querySelector('.id');
 const idTitle = document.querySelector('.id span');
@@ -169,6 +176,12 @@ email.addEventListener('keydown', function (event) {
         event.preventDefault();
         businessNumber1.focus();
     }
+});
+// 이메일 확인 버튼
+const emailCheckBtn = document.querySelector('.email-box button');
+emailCheckBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+    alert('아직 구현되지 않은 기능입니다.')
 });
 
 
