@@ -2,7 +2,10 @@ NAME=nogo
 
 all: $(NAME)
 
-$(NAME) : up
+$(NAME) : build up
+
+build :
+	./gradlew build
 
 up :
 	docker compose up -d
@@ -37,10 +40,7 @@ clean : down
 	docker network prune --force
 	docker volume prune --force
 
-build :
-	./gradlew build
-
 re : clean build
 	docker compose up -d --build --force-recreate
 
-.PHONY : up, ps, down, logs, logsf, top, exec-db, exec-app, clean, build, re
+.PHONY : build, up, ps, down, logs, logsf, top, exec-db, exec-app, clean, re
