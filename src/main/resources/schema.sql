@@ -5,7 +5,7 @@ SHOW TABLES;
 DROP TABLE IF EXISTS employer;
 CREATE TABLE IF NOT EXISTS employer(
     i bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id varchar(100) NOT NULL,
+    id varchar(100) NOT NULL,   -- unique
     pw varchar(100) NOT NULL,
     email varchar(100),
 --  phone varchar(100) NOT NULL,
