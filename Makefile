@@ -16,16 +16,16 @@ ps :
 down :
 	docker compose down
 
-logs_db:
+logs-db:
 	docker compose logs database
 
-logs_app:
+logs-app:
 	docker compose logs application
 
-flogs_db :
+flogs-db :
 	docker compose logs database -f
 
-flogs_app :
+flogs-app :
 	docker compose logs application -f
 top :
 	docker compose top database
