@@ -1,14 +1,18 @@
 package com.projectb.nogo.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @ToString
 public class WorkerPhotoVO {
 
-  private String photoContent;
+  private String photo;
+  private MultipartFile photoContent;
+
+//  public WorkerPhotoVO(WorkerDTO2 dto){
+//      photoContent = dto.getPhotoContent();
+//  }
 
 }

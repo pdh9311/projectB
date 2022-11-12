@@ -26,16 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     agreeAllElement.addEventListener('click', checkAll);
     btnElement.addEventListener("click", submit);
-    // agreeServiceElement.addEventListener('change', validEventListener);
-    // agreePersonalElement.addEventListener('change', validEventListener);
-    // idElement.addEventListener("focusout", validEventListener);
-    // pwElement.addEventListener("focusout", validEventListener);
-    // repwElement.addEventListener("focusout", validEventListener);
-    // emailElement.addEventListener("focusout", validEventListener);
-    // nameElement.addEventListener("focusout", validEventListener);
-    // phoneElement.addEventListener("focusout", validEventListener);
-    // adressElement.addEventListener("focusout", validEventListener);
-
 });
 
 function checkAll() {
@@ -62,14 +52,17 @@ function submit() {
     }
     errorMsgClose();
 
-    let sendData = {}
-    sendData.personal = getPersonal();
-    sendData.photoList = getPhoto();
-    sendData.historyList = getHistory();
-    
-    sendServer(sendData);
-}
 
+    let data = {
+        personal: getPersonal(),
+        historyList: getHistory()
+    };
+    let formData = new FormData();
+    formData.append('file', photoContentElement[0].files[0]);
+    //formData.append('file', photoContentElement[0].files[1]);
+    formData.append("personal", new Blob([JSON.stringify(data)], {type: "application/json"}));
+    sendServer(formData);
+}
 
 function getPersonal() {
 
@@ -112,8 +105,8 @@ function getPersonal() {
 
 function getPhoto() {
 
-    const photoContent = photoContentElement.value;
-
+    //const photoContent = photoContentElement.value;
+    const photoContent = photoContentElement[0].files[0];
     let photos = {};
     let photoList = [];
     photos.photoContent = photoContent;
@@ -138,37 +131,18 @@ function getHistory() {
 }
 
 function sendServer(data) {
-    let httpRequest = new XMLHttpRequest();
-
-    httpRequest.open('POST', '/join/worker', true);
-    httpRequest.responseType = "json";
-    httpRequest.setRequestHeader('Content-Type', 'application/json');
-    httpRequest.send(JSON.stringify(data));
-
-    httpRequest.onload = () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open('post', '/join/worker', true);
+    xhr.onload = () => {
         //통신 성공
-        if (httpRequest.status === 200) {
-            console.log(httpRequest.response);
+        if (xhr.status === 200) {
+            console.log(xhr.response);
             console.log("통신 성공");
         } else {
             //통신 실패
             console.log("통신 실패");
         }
     }
+    xhr.send(data);
+    console.log(data);
 }
-
-// function init() {
-//     idElement = document.getElementById(ElementId.ID);
-//     pwElement = document.getElementById(ElementId.PW);
-//     repwElement = document.getElementById(ElementId.REPW);
-//     emailElement = document.getElementById(ElementId.EMAIL);
-//     nameElement = document.getElementById(ElementId.NAME);
-//     phoneElement = document.getElementById(ElementId.PHONE);
-//     adressElement = document.getElementById(ElementId.ADRESS);
-//     agreeServiceElement = document.getElementById(ElementId.AGREESERVICE);
-//     agreePersonalElement = document.getElementById(ElementId.AGREEPERSONAL);
-//     errorMsgElement = document.getElementById(ElementId.ERRORMSG);
-//     btnElement = document.getElementById(ElementId.BUTTON);
-//     agreeAllElement = document.getElementById(ElementId.agreeAllElement);
-//     agreeMemberElements = document.querySelectorAll(ElementClass.AGREEMEMBER);
-// }

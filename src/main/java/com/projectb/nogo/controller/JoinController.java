@@ -8,8 +8,10 @@ import com.projectb.nogo.dto.WorkerDTO;
 import com.projectb.nogo.service.JoinService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,38 +21,42 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JoinController {
 
-  private final JoinService joinService;
+    private final JoinService joinService;
 
-  @GetMapping("/employer")
-  public String joinEmployer() {
-    return "join/employer";
-  }
+    @GetMapping("/employer")
+    public String joinEmployer() {
+        return "join/employer";
+    }
 
-  @PostMapping("/employer")
-  public String CompleteJoinEmployer(EmployerDto employerDto) {
-    log.info("corporateDto={}", employerDto);
-    joinService.save(employerDto);
-    return "redirect:/";
-  }
+    @PostMapping("/employer")
+    public String CompleteJoinEmployer(EmployerDto employerDto) {
+        log.info("corporateDto={}", employerDto);
+        joinService.save(employerDto);
+        return "redirect:/";
+    }
 
-  @GetMapping("/worker")
-  public String joinWorkerPage() {
-    return "join/worker";
-  }
+    @GetMapping("/worker")
+    public String joinWorkerPage() {
+        return "join/worker";
+    }
 
-  @PostMapping("/worker")
-  public String CompleteJoinWorker(@RequestBody WorkerDTO workerDto) {
+    @PostMapping(value = "/worker")
+    public String CompleteJoinWorker(@RequestPart("personal") WorkerDTO workerDto , @RequestPart(value = "file" , required = false) List<MultipartFile> file) {
 
-    WorkerPersonalVO personal = workerDto.getPersonal();
-    List<WorkerHistoryVO> historyList = workerDto.getHistoryList();
-    List<WorkerPhotoVO> photoList = workerDto.getPhotoList();
-    log.info("personal : {}", personal);
-    log.info("historyList : {}", historyList);
-    log.info("photoList : {}", photoList);
+        WorkerPersonalVO personal = workerDto.getPersonal();
+        List<WorkerHistoryVO> historyList = workerDto.getHistoryList();
+        log.info("historyList : {}", historyList);
+        log.info("personal : {}", personal);
+        log.info("file : {}", file.get(0).getOriginalFilename());
+//        log.info("file : {}", file.get(1).getOriginalFilename());
+//        log.info("file : {}", file.get(1).getContentType());
+//        log.info("file : {}", file.get(1).getSize());
+        //log.info("photoList : {}", photoList);
 
-    joinService.workerPersonal(personal);
-    //joinService.workerHistorys(historyList);
-    //joinService.workerPhotos(photoList);
-    return "redirect:/";
-  }
+        joinService.workerPersonal(personal);
+        //joinService.workerHistorys(historyList);
+        //joinService.workerPhotos(photoList);
+        return "redirect:/";
+    }
 }
+
