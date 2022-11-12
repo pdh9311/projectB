@@ -3,9 +3,8 @@ package com.projectb.nogo.repository;
 import com.projectb.nogo.constant.ExpirationPeriod;
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.dto.EmployerDto;
-import com.projectb.nogo.service.JoinService;
+import com.projectb.nogo.service.JoinServiceImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +13,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
-class JoinRepositoryTest {
+class JoinRepositoryImplTest {
 
     @Autowired
-    JoinService joinService;
+    JoinServiceImpl joinServiceImpl;
 
     @Autowired
-    JoinRepository joinRepository;
+    JoinRepositoryImpl joinRepositoryImpl;
 
     EmployerDto employerDto;
 
@@ -47,8 +45,8 @@ class JoinRepositoryTest {
 
     @Test
     void findById() {
-        Employer savedEmployer = joinService.save(employerDto);
-        Optional<Employer> findEmployer = joinRepository.findById(savedEmployer.getI());
+        Employer savedEmployer = joinServiceImpl.save(new Employer(employerDto));
+        Optional<Employer> findEmployer = joinRepositoryImpl.findById(savedEmployer.getIdx());
         assertThat(savedEmployer).usingRecursiveComparison()
             .isEqualTo(findEmployer.get());
     }

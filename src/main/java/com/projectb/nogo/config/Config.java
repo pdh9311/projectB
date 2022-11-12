@@ -2,8 +2,10 @@ package com.projectb.nogo.config;
 
 import com.projectb.nogo.converter.StringToAuthMethod;
 import com.projectb.nogo.converter.StringToExpirationPeriod;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -14,4 +16,5 @@ public class Config implements WebMvcConfigurer {
         registry.addConverter(new StringToAuthMethod());
         registry.addConverter(new StringToExpirationPeriod());
     }
+
 }

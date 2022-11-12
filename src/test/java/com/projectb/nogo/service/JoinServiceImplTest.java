@@ -3,7 +3,6 @@ package com.projectb.nogo.service;
 import com.projectb.nogo.constant.ExpirationPeriod;
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.dto.EmployerDto;
-import com.projectb.nogo.repository.JoinRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,10 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
-class JoinServiceTest {
+class JoinServiceImplTest {
 
     @Autowired
-    JoinService joinService;
+    JoinServiceImpl joinServiceImpl;
 
     EmployerDto employerDto;
 
@@ -40,7 +39,7 @@ class JoinServiceTest {
     @Test
     void saveExpirationPeriodOneYear() {
         employerDto.setExpirationPeriod(ExpirationPeriod.ONE_YEAR);
-        Employer savedEmployer = joinService.save(employerDto);
+        Employer savedEmployer = joinServiceImpl.save(new Employer(employerDto));
         assertThat(savedEmployer.getExpirationPeriod().getYear())
             .isEqualTo(LocalDateTime.now().getYear() + 1);
     }
@@ -48,7 +47,7 @@ class JoinServiceTest {
     @Test
     void saveExpirationPeriodThreeYear() {
         employerDto.setExpirationPeriod(ExpirationPeriod.THREE_YEAR);
-        Employer savedEmployer = joinService.save(employerDto);
+        Employer savedEmployer = joinServiceImpl.save(new Employer(employerDto));
         assertThat(savedEmployer.getExpirationPeriod().getYear())
             .isEqualTo(LocalDateTime.now().getYear() + 3);
     }
@@ -56,7 +55,7 @@ class JoinServiceTest {
     @Test
     void saveExpirationPeriodUntilWithdrawal() {
         employerDto.setExpirationPeriod(ExpirationPeriod.UNTIL_WITHDRAWAL);
-        Employer savedEmployer = joinService.save(employerDto);
+        Employer savedEmployer = joinServiceImpl.save(new Employer(employerDto));
         assertThat(savedEmployer.getExpirationPeriod().getYear())
             .isEqualTo(9999);
     }

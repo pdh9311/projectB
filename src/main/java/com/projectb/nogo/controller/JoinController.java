@@ -2,14 +2,15 @@ package com.projectb.nogo.controller;
 
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.dto.EmployerDto;
-import com.projectb.nogo.service.JoinService;
+import com.projectb.nogo.service.JoinServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Slf4j
 @Controller
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class JoinController {
 
-    private final JoinService joinService;
+    private final JoinServiceImpl joinServiceImpl;
 
     @GetMapping("/employer")
     public String joinEmployer() {
@@ -29,10 +30,8 @@ public class JoinController {
      * EmployerDto에서 pw 와 rePw 값이 같지 않으면 error 로그를 남기고 에러 페이지로 보낸다.
      */
     @PostMapping("/employer")
-    public String CompleteJoinEmployer(@ModelAttribute EmployerDto employerDto) {
-        log.info("corporateDto={}", employerDto);
-        Employer savedEmployer = joinService.save(employerDto);
-        log.info("i = {}", savedEmployer.getI());
+    public String CompleteJoinEmployer(@Valid EmployerDto employerDto) {
+        joinServiceImpl.save(new Employer(employerDto));
         return "redirect:/";
     }
 

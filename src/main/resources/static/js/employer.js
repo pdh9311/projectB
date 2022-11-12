@@ -82,7 +82,7 @@ idBox.addEventListener('click', function () {
     id.focus();
 });
 // 아이디 유효성 검사 : 영문, 숫자 4 ~ 15자
-const idRegExp = /^[a-z0-9_-]\w{4,15}$/;
+const idRegExp = /^[a-zA-Z0-9_-]{4,15}$/;
 id.addEventListener('focusout', function () {
     const idRegExpResult = idRegExp.test(id.value);
     if (!idRegExpResult) {

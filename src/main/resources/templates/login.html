@@ -8,7 +8,7 @@
       <img src="/image/logo-nogo.svg" alt="로고">
     </div>
 
-    <form action="" method="post">
+    <form action="/login/worker" method="post">
       <div class="login-select">
         <ul>
           <li class="worker-highlight">개인 회원</li>
@@ -19,10 +19,10 @@
         </ul>
       </div>
 
-      <input class="id" type="text" placeholder="아이디">
+      <input class="id" type="text" name="workerId" placeholder="아이디">
 
       <div class="pw">
-        <input type="password" placeholder="비밀번호">
+        <input type="password" name="workerPw" placeholder="비밀번호">
         <img src="/image/eye-solid.svg" alt="비밀번호 보기">
       </div>
 
@@ -45,7 +45,7 @@
         <b>네이버 로그인</b>
       </a>
 
-      <a href="#" class="kakao">
+      <a href="#" th:href="${kakaoLoginUrl}" class="kakao">
         <img src="/image/logo-kakao.svg" alt="kakao">
         <b>카카오 로그인</b>
       </a>

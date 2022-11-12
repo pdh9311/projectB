@@ -33,17 +33,17 @@ public class EmployerDto {
     // private String phone;
 
     @NotBlank
-    @Pattern(regexp = "/^[a-z0-9_-]\\w{4,15}$/")
+    @Pattern(regexp = "^[a-zA-Z0-9_-]{4,15}$")
     private String id;
     @NotBlank
-    @Pattern(regexp = "/^(?=.*[a-zA-Z])(?=.*[\\[\\]{}\\\\|;:'\",<.>/?`~₩!@#$%^&*()_=+-])(?=.*[0-9]).{8,16}$")
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[\\[\\]{}\\\\|;:'\",<.>/?`~₩!@#$%^&*()_=+-])(?=.*[0-9]).{8,16}$")
     private String pw;
     @NotBlank
-    @Pattern(regexp = "/^(?=.*[a-zA-Z])(?=.*[\\[\\]{}\\\\|;:'\",<.>/?`~₩!@#$%^&*()_=+-])(?=.*[0-9]).{8,16}$")
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[\\[\\]{}\\\\|;:'\",<.>/?`~₩!@#$%^&*()_=+-])(?=.*[0-9]).{8,16}$")
     private String rePw;
 
     @NotBlank
-    @Email(regexp = "/^[a-zA-Z0-9._+-]+@[a-zA-Z0-9._+-]+\\.[a-zA-Z0-9_+-]+$/")
+    @Email(regexp = "^[a-zA-Z0-9._+-]+@[a-zA-Z0-9._+-]+\\.[a-zA-Z0-9_+-]+$")
     private String email;
 
     @NotBlank
