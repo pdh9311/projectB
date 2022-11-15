@@ -25,7 +25,7 @@
 .id,
 .re-password,
 .email-box,
-.business-number-box,
+.business-number,
 .period-select-box {
     margin-bottom: 14px;
 }
@@ -175,7 +175,7 @@
 .id,
 .password,
 .email-box,
-.business-number-box {
+.business-number {
     height: 47px;
     border: 1px solid #E3E3E3;
     padding: 6px 16px;
@@ -199,7 +199,7 @@
 }
 
 .auth span {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .auth button,
@@ -212,7 +212,7 @@
     border-radius: 5px;
 }
 
-.id, .password, .re-password{
+.id, .password, .re-password, .business-number {
     display: flex;
     flex-direction: column;
 }
@@ -221,19 +221,29 @@
 .password span,
 .re-password span,
 .email span,
-.business-number-box span {
-    font-size: 10px;
+.business-number span {
+    font-size: 12px;
     color: #908f8f;
 }
 
 .id input,
 .password input,
 .re-password input,
-.email input {
+.email input,
+.business-number input {
     margin: 0;
     padding: 0;
     border: none;
-    font-size: 14px;
+    font-size: 16px;
+}
+
+.id input::placeholder,
+.password input::placeholder,
+.re-password input::placeholder,
+.email input::placeholder,
+.business-number input::placeholder {
+    font-size: 12px;
+    color: lightslategray;
 }
 
 .email-box {
@@ -248,34 +258,18 @@
     width: 60%;
 }
 
-.business-number-box {
-    display: flex;
-    flex-direction: column;
-}
 
-.business-number input {
-    display: inline;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    padding: 0 5px;
-    font-size: 14px;
-    text-align: center;
-}
-
-.business-number input:nth-child(1) {
-    width:50px;
-}
-
-.business-number input:nth-child(2) {
-    width:40px;
-}
-
-.business-number input:nth-child(3) {
-    width:70px;
-}
+/*.business-number input {*/
+/*    !*display: inline;*!*/
+/*    border: 1px solid #d9d9d9;*/
+/*    border-radius: 3px;*/
+/*    padding: 0 5px;*/
+/*    font-size: 16px;*/
+/*    text-align: center;*/
+/*}*/
 
 .text-period-box strong {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .btn-join-complete {
