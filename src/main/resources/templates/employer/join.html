@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>고용자 회원 가입</title>
+</head>
+<body>
+<form action="" th:action method="post">
+    <h1>고용자 회원 가입</h1>
+    <strong>이용약관 동의</strong>
+    <input type="checkbox" name="agreeService" id="agree-service">
+    <label for="agree-service">서비스 이용 동의</label>
+    <input type="checkbox" name="agreePersonalInfo" id="agree-personal_info">
+    <label for="agree-personal_info">서비스 이용 동의</label>
+    <input type="checkbox" name="agreeSms" id="agree-sms">
+    <label for="agree-sms">서비스 이용 동의</label>
+    <input type="checkbox" name="agreeEmail" id="agree-email">
+    <label for="agree-email">서비스 이용 동의</label>
+    <hr>
+    휴대폰 : <input type="text" name="employerPhone">
+    <hr>
+    아이디 : <input type="text" name="employerId">
+    <hr>
+    비밀번호 : <input type="password" name="employerPw">
+    <hr>
+    비밀번호 확인 : <input type="password">
+    <hr>
+    이메일 : <input type="email" name="employerEmail">
+    <hr>
+    사업자 번호 : <input type="text" name="businessNumber">
+    <hr>
+    <strong>개인정보 유효기간 선택</strong>
+    <input type="radio" name="expirationPeriod" id="one-year" value="1">
+    <label for="one-year">1년</label>
+    <input type="radio" name="expirationPeriod" id="three-year" value="3">
+    <label for="three-year">3년</label>
+    <input type="radio" name="expirationPeriod" id="until-withdrawal" value="-1">
+    <label for="until-withdrawal">회원 탈퇴 전까지</label>
+    <hr>
+    <button type="submit">가입하기</button>
+</form>
+</body>
+</html>
