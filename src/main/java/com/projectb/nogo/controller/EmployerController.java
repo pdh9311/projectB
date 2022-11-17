@@ -8,11 +8,10 @@ import com.projectb.nogo.service.EmployerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -29,13 +28,10 @@ public class EmployerController {
 
     @PostMapping("/join")
     public String employerJoin(@Valid EmployerJoinDto employerJoinDto) {
-        log.info("EmployerJoinDto = {}", employerJoinDto);
         EmployerInfo employerInfo = new EmployerInfo(employerJoinDto);
         Employer employer = new Employer(employerJoinDto);
         employerService.save(employerInfo, employer);
-        log.info("Employer = {}", employer);
-        log.info("EmployerInfo = {}", employerInfo);
-        return "redirect:/";
+        return "redirect:/employer/login";
     }
 
     @GetMapping("/login")
@@ -45,9 +41,31 @@ public class EmployerController {
 
     @PostMapping("/login")
     public String employerLogin(EmployerLoginDto employerLoginDto) {
-        log.info("employerLoginDto = {}", employerLoginDto);
         EmployerInfo employerInfo = employerService.login(employerLoginDto).get();
-        log.info("EmployerInfo = {}", employerInfo);
+        // 세션 저장 (interceptor 에서 로그인 유지 필요)
         return "redirect:/";
+    }
+
+    @GetMapping("/main")
+    public String employerMainForm() {
+        return "employer/main";
+    }
+
+    @PostMapping("/main/sido")
+    @ResponseBody
+    public Map<String, String> sidoList() {
+        return employerService.findSidoList();
+    }
+
+    @PostMapping("/main/sigungu/{code}")
+    @ResponseBody
+    public Map<String, String> sigunguList(@PathVariable String code) {
+        return employerService.findSigunguList(code);
+    }
+
+    @PostMapping("/main/eupmyeondong/{code}")
+    @ResponseBody
+    public Map<String, String> eupmyeondongList(@PathVariable String code) {
+        return employerService.findEupmyeondongList(code);
     }
 }

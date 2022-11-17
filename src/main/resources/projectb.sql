@@ -10,16 +10,16 @@ CREATE TABLE IF NOT EXISTS `tbl_worker_info` (
   `worker_gender` BOOLEAN NOT NULL,
   `worker_phone` VARCHAR(20) NOT NULL,
   `worker_birth` VARCHAR(8) NOT NULL,
-  `worker_career` TEXT DEFAULT NULL, 
-	`worker_photo_1` VARCHAR(255) DEFAULT NULL,
-	`worker_photo_2` VARCHAR(255) DEFAULT NULL,
+  `worker_career` TEXT DEFAULT NULL,
+  `worker_photo_1` VARCHAR(255) DEFAULT NULL,
+  `worker_photo_2` VARCHAR(255) DEFAULT NULL,
   `bank_name` VARCHAR(20) NOT NULL,
   `bank_account_number` VARCHAR(20) NOT NULL,
   `point` BIGINT NOT NULL,
   `agree_service` BOOLEAN NOT NULL,
-	`agree_personal_info` BOOLEAN NOT NULL,
-	`agree_sms` BOOLEAN DEFAULT NULL,
-	`agree_email` BOOLEAN DEFAULT NULL, 
+  `agree_personal_info` BOOLEAN NOT NULL,
+  `agree_sms` BOOLEAN DEFAULT NULL,
+  `agree_email` BOOLEAN DEFAULT NULL,
   PRIMARY KEY (`worker_info_idx`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 

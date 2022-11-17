@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employer Main</title>
+</head>
+<body>
+<div class="sido">
+  <input type="checkbox" name=""> 전체
+</div>
+<div class="sigungu">
+  <input type="checkbox" name=""> 전체
+</div>
+<div class="eupmyeondong">
+  <input type="checkbox" name=""> 전체
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', onloaded());
+
+function onloaded() {
+    getSidoList();
+}
+
+
+const sidoAllInput = document.querySelectorAll('div.sido > input');
+for (let i in sidoAllInput) {
+    const sido = sidoAllInput.item(i);
+    const code = sido.id;
+    sido.addEventListener('checked', function() {
+        console.log(this);
+    });
+
+}
+
+function test(code) {
+    console.log(code);
+}
+
+async function getSidoList() {
+    const response = await axios.post('http://localhost:8080/employer/main/sido');
+    const sidoInfo = response.data;
+    const sido = document.querySelector('.sido');
+    for (let i in sidoInfo) {
+        const code = i;
+        const name = sidoInfo[i];
+        const sidoInputCheckbox = document.createElement('input');
+        const sidoLabel = document.createElement('label');
+
+        sidoInputCheckbox.type = 'checkbox';
+        sidoInputCheckbox.name = '' + name + code;
+        sidoInputCheckbox.id = '' + code;
+        sidoLabel.for = '' + code;
+        sidoLabel.innerText = name;
+
+        sidoInputCheckbox.appendChild(sidoLabel);
+        sido.appendChild(sidoInputCheckbox);
+        sido.appendChild(sidoLabel);
+    }
+}
+
+async function getSigunguList(sidoCode) {
+    const response = await axios.post('http://localhost:8080/employer/main/sigungu/' + sidoCode);
+    const sigunguInfo = response.data;
+    const sigungu = document.querySelector('.sigungu');
+    for (let i in sigunguInfo) {
+        const code = i;
+        const name = sigunguInfo[i];
+        const sigunguInputCheckbox = document.createElement('input');
+        const sigunguLabel = document.createElement('label');
+
+        sigunguInputCheckbox.type = 'checkbox';
+        sigunguInputCheckbox.name = '' + name + code;
+        sigunguInputCheckbox.id = '' + code;
+        sigunguLabel.for = '' + code;
+        sigunguLabel.innerText = name;
+
+        sigunguInputCheckbox.appendChild(sigunguLabel);
+        sigungu.appendChild(sigunguInputCheckbox);
+        sigungu.appendChild(sigunguLabel);
+    }
+}
+
+async function getEupmyeondongList(sigunguCode) {
+    const response = await axios.post('http://localhost:8080/employer/main/eupmyeondong/' + sigunguCode);
+    const eupmyeondongInfo = response.data;
+    const eupmyeondong = document.querySelector('.eupmyeondong');
+    for (let i in eupmyeondongInfo) {
+        const code = i;
+        const name = eupmyeondongInfo[i];
+        const eupmyeondongInputCheckbox = document.createElement('input');
+        const eupmyeondongLabel = document.createElement('label');
+
+        eupmyeondongInputCheckbox.type = 'checkbox';
+        eupmyeondongInputCheckbox.name = '' + name + code;
+        eupmyeondongInputCheckbox.id = '' + code;
+        eupmyeondongLabel.for = '' + code;
+        eupmyeondongLabel.innerText = name;
+
+        eupmyeondongInputCheckbox.appendChild(eupmyeondongLabel);
+        eupmyeondong.appendChild(eupmyeondongInputCheckbox);
+        eupmyeondong.appendChild(eupmyeondongLabel);
+    }
+}
+
+</script>
+</body>
+</html>

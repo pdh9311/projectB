@@ -2,8 +2,11 @@ package com.projectb.nogo.repository;
 
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.domain.EmployerInfo;
+import com.projectb.nogo.domain.LocalCode;
 import com.projectb.nogo.dto.EmployerLoginDto;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface EmployerRepository {
@@ -21,4 +24,9 @@ public interface EmployerRepository {
     // 외래키값으로 회원 정보 가져오기
     Optional<EmployerInfo> findByEmployerInfoIdx(Long employerInfoIdx);
 
+    List<LocalCode> findSidoList();
+
+    List<LocalCode> findSigunguList(String sido);
+
+    List<LocalCode> findEupmyeondongList(String sigungu);
 }

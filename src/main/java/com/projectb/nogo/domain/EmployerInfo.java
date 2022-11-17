@@ -1,6 +1,7 @@
 package com.projectb.nogo.domain;
 
 import com.projectb.nogo.dto.EmployerJoinDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
