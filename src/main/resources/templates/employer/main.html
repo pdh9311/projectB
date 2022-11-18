@@ -6,13 +6,13 @@
 </head>
 <body>
 <div class="sido">
-  <input type="checkbox" name=""> 전체
+  <input type="checkbox" name="allSido"> 전체
 </div>
-<div class="sigungu">
-  <input type="checkbox" name=""> 전체
+<div class="sigungu" visible>
+  <input type="checkbox" name="allSigungu"> 전체
 </div>
 <div class="eupmyeondong">
-  <input type="checkbox" name=""> 전체
+  <input type="checkbox" name="allEupmyeondong"> 전체
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -23,21 +23,20 @@ document.addEventListener('DOMContentLoaded', onloaded());
 function onloaded() {
     getSidoList();
 }
-
-
-const sidoAllInput = document.querySelectorAll('div.sido > input');
+/*
+const sidoAllInput = document.querySelector('div.sido');
 for (let i in sidoAllInput) {
     const sido = sidoAllInput.item(i);
     const code = sido.id;
     sido.addEventListener('checked', function() {
         console.log(this);
     });
-
 }
 
 function test(code) {
     console.log(code);
 }
+*/
 
 async function getSidoList() {
     const response = await axios.post('http://localhost:8080/employer/main/sido');
@@ -55,9 +54,26 @@ async function getSidoList() {
         sidoLabel.for = '' + code;
         sidoLabel.innerText = name;
 
+
         sidoInputCheckbox.appendChild(sidoLabel);
         sido.appendChild(sidoInputCheckbox);
         sido.appendChild(sidoLabel);
+
+        const sigungu = document.querySelector('.sigungu');
+        sigungu.style.visibility = 'hidden';
+        const eupmyeondong = document.querySelector('.eupmyeondong');
+        eupmyeondong.style.visibility = 'hidden';
+
+        sidoInputCheckbox.addEventListener('click', function () {
+            if (this.checked === true) {
+                const sidoCode = this.id;
+                getSigunguList(sidoCode);
+                sigungu.style.visibility = 'visible';
+            } else {
+                sigungu.style.visibility = 'hidden';
+                eupmyeondong.style.visibility = 'hidden';
+            }
+        });
     }
 }
 
@@ -80,10 +96,25 @@ async function getSigunguList(sidoCode) {
         sigunguInputCheckbox.appendChild(sigunguLabel);
         sigungu.appendChild(sigunguInputCheckbox);
         sigungu.appendChild(sigunguLabel);
+
+        const eupmyeondong = document.querySelector('.eupmyeondong');
+
+        sigunguInputCheckbox.addEventListener('click', function () {
+            console.log(this);
+            if (this.checked === true) {
+                const sigunguCode = this.id;
+                console.log(sigunguCode);
+                getEupmyeondongList(sigunguCode);
+                eupmyeondong.style.visibility = 'visible';
+            } else {
+                eupmyeondong.style.visibility = 'hidden';
+            }
+        });
     }
 }
 
 async function getEupmyeondongList(sigunguCode) {
+
     const response = await axios.post('http://localhost:8080/employer/main/eupmyeondong/' + sigunguCode);
     const eupmyeondongInfo = response.data;
     const eupmyeondong = document.querySelector('.eupmyeondong');
@@ -102,6 +133,8 @@ async function getEupmyeondongList(sigunguCode) {
         eupmyeondongInputCheckbox.appendChild(eupmyeondongLabel);
         eupmyeondong.appendChild(eupmyeondongInputCheckbox);
         eupmyeondong.appendChild(eupmyeondongLabel);
+
+
     }
 }
 
