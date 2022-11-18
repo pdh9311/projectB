@@ -4,7 +4,6 @@ import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.domain.EmployerInfo;
 import com.projectb.nogo.dto.EmployerLoginDto;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -20,9 +19,9 @@ public interface EmployerService {
     Map<String, String> findSidoList();
 
     // 시군구 정보 리스트로 가져오기
-    Map<String, String> findSigunguList(String sido);
+    Map<String, String> findSigunguList(String sidoCode);
 
     // 읍면동 정보 리스트로 가져오기
-    Map<String, String> findEupmyeondongList(String sigungu);
+    Map<String, String> findEupmyeondongList(String sidoCode, String sigunguCode);
 
 }

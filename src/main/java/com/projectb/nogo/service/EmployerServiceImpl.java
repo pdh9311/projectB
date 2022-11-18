@@ -46,8 +46,8 @@ public class EmployerServiceImpl implements EmployerService {
     }
 
     @Override
-    public Map<String, String> findSigunguList(String sido) {
-        List<LocalCode> sigunguList = employerRepository.findSigunguList(sido);
+    public Map<String, String> findSigunguList(String sidoCode) {
+        List<LocalCode> sigunguList = employerRepository.findSigunguList(sidoCode);
         Map<String, String> codeAndName = new HashMap<>();
         for (LocalCode localCode : sigunguList) {
             codeAndName.put(localCode.getSigunguCode(), localCode.getSigunguName());
@@ -56,8 +56,8 @@ public class EmployerServiceImpl implements EmployerService {
     }
 
     @Override
-    public Map<String, String> findEupmyeondongList(String sigungu) {
-        List<LocalCode> eupmyeondongList = employerRepository.findEupmyeondongList(sigungu);
+    public Map<String, String> findEupmyeondongList(String sidoCode, String sigunguCode) {
+        List<LocalCode> eupmyeondongList = employerRepository.findEupmyeondongList(sidoCode, sigunguCode);
         Map<String, String> codeAndName = new HashMap<>();
         for (LocalCode localCode : eupmyeondongList) {
             codeAndName.put(localCode.getEupmyeondongCode(), localCode.getEupmyeondongName());

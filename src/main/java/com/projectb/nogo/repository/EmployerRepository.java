@@ -6,7 +6,6 @@ import com.projectb.nogo.domain.LocalCode;
 import com.projectb.nogo.dto.EmployerLoginDto;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public interface EmployerRepository {
@@ -26,7 +25,7 @@ public interface EmployerRepository {
 
     List<LocalCode> findSidoList();
 
-    List<LocalCode> findSigunguList(String sido);
+    List<LocalCode> findSigunguList(String sidoCode);
 
-    List<LocalCode> findEupmyeondongList(String sigungu);
+    List<LocalCode> findEupmyeondongList(String sidoCode, String sigunguCode);
 }

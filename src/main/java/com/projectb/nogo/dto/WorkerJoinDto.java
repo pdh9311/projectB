@@ -1,5 +1,6 @@
 package com.projectb.nogo.dto;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,29 +8,43 @@ import lombok.ToString;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-/**
- * 정규표현식으로 값이 제대로 들어왔는지 확인할 필요가 있음
- */
 @Setter
 @Getter
 @ToString
-public class EmployerJoinDto {
+public class WorkerJoinDto {
+
     @NotBlank
-    private String employerId;
+    private String workerId;
+
     @NotBlank
-    private String employerPw;
+    private String workerPw;
+
     @NotBlank
-    private String employerPhone;
+    private String workerName;
+
     @NotBlank
-    private String employerEmail;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String workerBirth;
+
     @NotBlank
-    private String businessNumber;
+    private String workerGender;
+
+    @NotBlank
+    private String workerEmail;
+
+    @NotBlank
+    private String workerPhone;
+
     @NotNull
     private Boolean agreeService;
+
     @NotNull
     private Boolean agreePersonalInfo;
+
     private Boolean agreeSms;
+
     private Boolean agreeEmail;
+
     @NotNull
     private Integer expirationPeriod;
 }

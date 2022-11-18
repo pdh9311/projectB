@@ -57,15 +57,16 @@ public class EmployerController {
         return employerService.findSidoList();
     }
 
-    @PostMapping("/main/sigungu/{code}")
+    @PostMapping("/main/sigungu")
     @ResponseBody
-    public Map<String, String> sigunguList(@PathVariable String code) {
-        return employerService.findSigunguList(code);
+    public Map<String, String> sigunguList(@RequestParam("sidoCode") String sidoCode) {
+        return employerService.findSigunguList(sidoCode);
     }
 
-    @PostMapping("/main/eupmyeondong/{code}")
+    @PostMapping("/main/eupmyeondong")
     @ResponseBody
-    public Map<String, String> eupmyeondongList(@PathVariable String code) {
-        return employerService.findEupmyeondongList(code);
+    public Map<String, String> eupmyeondongList(@RequestParam("sidoCode") String sidoCode,
+                                                @RequestParam("sigunguCode") String sigunguCode) {
+        return employerService.findEupmyeondongList(sidoCode, sigunguCode);
     }
 }

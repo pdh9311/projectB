@@ -6,7 +6,6 @@ import com.projectb.nogo.domain.LocalCode;
 import com.projectb.nogo.dto.EmployerLoginDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -16,9 +15,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -117,9 +114,10 @@ public class EmployerRepositoryImpl implements EmployerRepository {
     }
 
     @Override
-    public List<LocalCode> findSigunguList(String code) {
-        String sql = "SELECT sigungu_code, sigungu_name FROM tbl_local_code WHERE sido_code = :code GROUP BY sigungu_code";
-        SqlParameterSource param = new MapSqlParameterSource("code", code);
+    public List<LocalCode> findSigunguList(String sidoCode) {
+        log.info("sidoCode = {}", sidoCode);
+        String sql = "SELECT sigungu_code, sigungu_name FROM tbl_local_code WHERE sido_code = :sidoCode GROUP BY sigungu_code";
+        SqlParameterSource param = new MapSqlParameterSource("sidoCode", sidoCode);
         return template.query(sql, param, sigunguRowMapper());
     }
 
@@ -134,9 +132,12 @@ public class EmployerRepositoryImpl implements EmployerRepository {
     }
 
     @Override
-    public List<LocalCode> findEupmyeondongList(String code) {
-        String sql = "SELECT eupmyeondong_code, eupmyeondong_name FROM tbl_local_code WHERE sigungu_code = :code GROUP BY eupmyeondong_code";
-        SqlParameterSource param = new MapSqlParameterSource("code", code);
+    public List<LocalCode> findEupmyeondongList(String sidoCode, String sigunguCode) {
+        log.info("sigunguCode = {}", sigunguCode);
+        String sql = "SELECT eupmyeondong_code, eupmyeondong_name FROM tbl_local_code WHERE sido_code = :sidoCode AND sigungu_code = :sigunguCode GROUP BY eupmyeondong_code";
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("sidoCode", sidoCode)
+                .addValue("sigunguCode", sigunguCode);
         return template.query(sql, param, eupmyeondongRowMapper());
     }
 
