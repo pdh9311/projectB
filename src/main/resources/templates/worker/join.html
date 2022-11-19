@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section id="worker-join">
+    <div id="agree-list">
+
+        <input type="checkbox" id="agree-all">
+        <label for="agree-all" class="agree-checkbox"> 전체 동의</label>
+        <br>
+
+        <input type="checkbox" id="agree-service" class="agree-member agree-required" >
+        <label for="agree-service" class="agree-checkbox"> 서비스 이용약관 동의</label>
+        <br>
+
+        <input type="checkbox" id="agree-personal" class="agree-member agree-required">
+        <label for="agree-personal" class="agree-checkbox"> 개인정보 이용 동의</label>
+        <br>
+
+        <input type="checkbox" id="agree-sms" class="agree-member">
+        <label for="agree-sms" class="agree-checkbox"> 광고성 정보 수신 동의 (SMS/MMS) </label>
+        <br>
+
+        <input type="checkbox" id="agree-email" class="agree-member">
+        <label for="agree-email" class="agree-checkbox"> 광고성 정보 수신 동의 (email) </label>
+    </div>
+    <br>
+    <div id="user-id-wrap">
+        <label for="user-id">아이디 : </label>
+        <input type="text" id="user-id">
+    </div>
+    <div id="user-pw-wrap">
+        <label for="user-pw">비밀번호 : </label>
+        <input type="text" id="user-pw">
+        <br>
+        <label for="user-re-pw"> 비밀번호 확인 : </label>
+        <input type="text" id="user-re-pw">
+    </div>
+    <div id="user-name-wrap">
+        <label for="user-name"> 이름 : </label>
+        <input type="text" id="user-name">
+    </div>
+    <div id="user-birth-wrap">
+        <label for="user-birth"> 생년월일 : </label>
+        <input type="text" id="user-birth">
+    </div>
+    <div id="user-email-wrap">
+        <label for="user-email"> 이메일 : </label>
+        <input type="text" id="user-email">
+    </div>
+    <div id="user-phone-wrap">
+        <label for="user-phone"> 연락처 : </label>
+        <input type="text" id="user-phone">
+    </div>
+    <br>
+    <div id="expiration_date-wrap">
+        <label> 개인정보 유지 기간 </label>
+        <br>
+        <input type="radio" id="one-year" class="expiration_date" value="1">
+        <label for="one-year" class="expiration"> 1년 </label>
+        <input type="radio" id="three-year" class="expiration_date" value="3">
+        <label for="three-year" class="expiration"> 3년 </label>
+        <input type="radio" id="end" class="expiration_date" value="9999">
+        <label for="end" class="expiration"> 탈퇴 시 </label>
+    </div>
+    <br>
+    <button id="submit"><label>가입 하기</label></button>
+
+</section>
+</body>
+</html>
