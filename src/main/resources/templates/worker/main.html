@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>근로자 메인</title>
+</head>
+<body>
+<form action="" th:action method="post">
+    <h1>지역선택</h1>
+    <select name="sido" class="sido"></select>
+    <hr>
+    <div class="sigungu"></div>
+    <hr>
+    <div class="eupmyeondong"></div>
+
+    <h1>일용직 근로자 지원 버튼</h1>
+    <button class="apply" type="submit">지원하기</button>
+</form>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/select-local.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', onloaded());
+
+    function onloaded() {
+        getSidoList();
+    }
+</script>
+<script>
+    // const applyBtn = document.querySelector('.apply');
+    // applyBtn.addEventListener('click', function () {
+    //
+    // });
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Getter
 @ToString
-public class EmployerJoinDto {
+public class EmployerJoinForm {
     @NotBlank
     private String employerId;
     @NotBlank

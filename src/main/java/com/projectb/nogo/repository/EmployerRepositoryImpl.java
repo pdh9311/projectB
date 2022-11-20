@@ -2,8 +2,7 @@ package com.projectb.nogo.repository;
 
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.domain.EmployerInfo;
-import com.projectb.nogo.domain.LocalCode;
-import com.projectb.nogo.dto.EmployerLoginDto;
+import com.projectb.nogo.dto.EmployerLoginForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -15,7 +14,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -32,9 +30,7 @@ public class EmployerRepositoryImpl implements EmployerRepository {
     public Long saveInfo(EmployerInfo employerInfo) {
         String sql = "INSERT INTO tbl_employer_info(employer_email, employer_phone, business_number, expiration_date, agree_service, agree_personal_info, agree_sms, agree_email) " +
                 "VALUES (:employerEmail, :employerPhone, :businessNumber, :expirationDate, :agreeService, :agreePersonalInfo, :agreeSms, :agreeEmail)";
-
         KeyHolder keyholder = new GeneratedKeyHolder();
-
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("employerEmail", employerInfo.getEmployerEmail())
                 .addValue("employerPhone", employerInfo.getEmployerPhone())
@@ -49,23 +45,21 @@ public class EmployerRepositoryImpl implements EmployerRepository {
     }
 
     @Override
-    public void saveIdPw(Employer employer, Long idx) {
+    public void saveIdPw(Employer employer, Long empleroyInfoIdx) {
         String sql = "INSERT INTO tbl_employer(employer_id, employer_pw, employer_info_idx) VALUES (:employerId, :employerPw, :employerInfoIdx)";
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("employerId", employer.getEmployerId())
                 .addValue("employerPw", employer.getEmployerPw())
-                .addValue("employerInfoIdx", idx);
+                .addValue("employerInfoIdx", empleroyInfoIdx);
         template.update(sql, param);
     }
 
     @Override
-    public Optional<Employer> findByEmployerIdPw(EmployerLoginDto employerLoginDto) {
-        String id = employerLoginDto.getEmployerId();
-        String pw = employerLoginDto.getEmployerPw();
+    public Optional<Employer> findByEmployerIdPw(EmployerLoginForm employerLoginForm) {
         String sql = "SELECT * FROM tbl_employer WHERE employer_id = :employerId AND employer_pw = :employerPw";
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("employerId", id)
-                .addValue("employerPw", pw);
+                .addValue("employerId", employerLoginForm.getEmployerId())
+                .addValue("employerPw", employerLoginForm.getEmployerPw());
         Employer employer = template.queryForObject(sql, param, employerRowMapper());
         return Optional.of(employer);
     }
@@ -96,60 +90,5 @@ public class EmployerRepositoryImpl implements EmployerRepository {
     private RowMapper<EmployerInfo> employerInfoRowMapper() {
         return BeanPropertyRowMapper.newInstance(EmployerInfo.class);
     }
-
-    @Override
-    public List<LocalCode> findSidoList() {
-        String sql = "SELECT sido_code, sido_name FROM tbl_local_code GROUP BY sido_code";
-        return template.query(sql, sidoRowMapper());
-    }
-
-    private RowMapper<LocalCode> sidoRowMapper() {
-        return ((rs, rowNum) -> {
-            LocalCode localCode = LocalCode.builder()
-                    .sidoCode(rs.getString("sido_code"))
-                    .sidoName(rs.getString("sido_name"))
-                    .build();
-            return localCode;
-        });
-    }
-
-    @Override
-    public List<LocalCode> findSigunguList(String sidoCode) {
-        log.info("sidoCode = {}", sidoCode);
-        String sql = "SELECT sigungu_code, sigungu_name FROM tbl_local_code WHERE sido_code = :sidoCode GROUP BY sigungu_code";
-        SqlParameterSource param = new MapSqlParameterSource("sidoCode", sidoCode);
-        return template.query(sql, param, sigunguRowMapper());
-    }
-
-    private RowMapper<LocalCode> sigunguRowMapper() {
-        return ((rs, rowNum) -> {
-            LocalCode localCode = LocalCode.builder()
-                    .sigunguCode(rs.getString("sigungu_code"))
-                    .sigunguName(rs.getString("sigungu_name"))
-                    .build();
-            return localCode;
-        });
-    }
-
-    @Override
-    public List<LocalCode> findEupmyeondongList(String sidoCode, String sigunguCode) {
-        log.info("sigunguCode = {}", sigunguCode);
-        String sql = "SELECT eupmyeondong_code, eupmyeondong_name FROM tbl_local_code WHERE sido_code = :sidoCode AND sigungu_code = :sigunguCode GROUP BY eupmyeondong_code";
-        SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("sidoCode", sidoCode)
-                .addValue("sigunguCode", sigunguCode);
-        return template.query(sql, param, eupmyeondongRowMapper());
-    }
-
-    private RowMapper<LocalCode> eupmyeondongRowMapper() {
-        return ((rs, rowNum) -> {
-            LocalCode localCode = LocalCode.builder()
-                    .eupmyeondongCode(rs.getString("eupmyeondong_code"))
-                    .eupmyeondongName(rs.getString("eupmyeondong_name"))
-                    .build();
-            return localCode;
-        });
-    }
-
 
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+</head>
+<body>
+
+<button class="apply">제출하기</button>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  const btn = document.querySelector('.apply');
+  btn.addEventListener('click', () => apply());
+
+  async function apply() {
+    const response = axios.post('http://localhost:8080/test');
+    const info = response.data;
+    console.log(info);
+    for (let i in info) {
+        console.log(info[i]);
+    }
+  }
+</script>
+</body>
+</html>

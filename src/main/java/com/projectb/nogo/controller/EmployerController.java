@@ -2,16 +2,19 @@ package com.projectb.nogo.controller;
 
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.domain.EmployerInfo;
-import com.projectb.nogo.dto.EmployerJoinDto;
-import com.projectb.nogo.dto.EmployerLoginDto;
+import com.projectb.nogo.dto.EmployerJoinForm;
+import com.projectb.nogo.dto.EmployerLoginForm;
 import com.projectb.nogo.service.EmployerService;
+import com.projectb.nogo.service.LocalCodeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -20,6 +23,7 @@ import java.util.Map;
 public class EmployerController {
 
     private final EmployerService employerService;
+    private final LocalCodeService localCodeService;
 
     @GetMapping("/join")
     public String employerJoinForm() {
@@ -27,9 +31,9 @@ public class EmployerController {
     }
 
     @PostMapping("/join")
-    public String employerJoin(@Valid EmployerJoinDto employerJoinDto) {
-        EmployerInfo employerInfo = new EmployerInfo(employerJoinDto);
-        Employer employer = new Employer(employerJoinDto);
+    public String employerJoin(@Valid EmployerJoinForm employerJoinForm) {
+        EmployerInfo employerInfo = new EmployerInfo(employerJoinForm);
+        Employer employer = new Employer(employerJoinForm);
         employerService.save(employerInfo, employer);
         return "redirect:/employer/login";
     }
@@ -40,8 +44,8 @@ public class EmployerController {
     }
 
     @PostMapping("/login")
-    public String employerLogin(EmployerLoginDto employerLoginDto) {
-        EmployerInfo employerInfo = employerService.login(employerLoginDto).get();
+    public String employerLogin(EmployerLoginForm employerLoginForm) {
+        EmployerInfo employerInfo = employerService.login(employerLoginForm).get();
         // 세션 저장 (interceptor 에서 로그인 유지 필요)
         return "redirect:/";
     }
@@ -51,22 +55,10 @@ public class EmployerController {
         return "employer/main";
     }
 
-    @PostMapping("/main/sido")
+    @PostMapping("/main/workerList")
     @ResponseBody
-    public Map<String, String> sidoList() {
-        return employerService.findSidoList();
-    }
-
-    @PostMapping("/main/sigungu")
-    @ResponseBody
-    public Map<String, String> sigunguList(@RequestParam("sidoCode") String sidoCode) {
-        return employerService.findSigunguList(sidoCode);
-    }
-
-    @PostMapping("/main/eupmyeondong")
-    @ResponseBody
-    public Map<String, String> eupmyeondongList(@RequestParam("sidoCode") String sidoCode,
-                                                @RequestParam("sigunguCode") String sigunguCode) {
-        return employerService.findEupmyeondongList(sidoCode, sigunguCode);
+    public String getApplicants() {
+//        employerService.findApplicants();
+        return "abc";
     }
 }

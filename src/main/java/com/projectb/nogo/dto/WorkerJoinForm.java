@@ -4,14 +4,16 @@ package com.projectb.nogo.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Setter
 @Getter
 @ToString
-public class WorkerJoinDto {
+public class WorkerJoinForm {
 
     @NotBlank
     private String workerId;
@@ -22,9 +24,9 @@ public class WorkerJoinDto {
     @NotBlank
     private String workerName;
 
-    @NotBlank
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String workerBirth;
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate workerBirth;
 
     @NotBlank
     private String workerGender;

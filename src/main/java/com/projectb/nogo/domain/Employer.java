@@ -1,6 +1,6 @@
 package com.projectb.nogo.domain;
 
-import com.projectb.nogo.dto.EmployerJoinDto;
+import com.projectb.nogo.dto.EmployerJoinForm;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -16,9 +16,9 @@ public class Employer {
     public Employer() {
     }
 
-    public Employer(EmployerJoinDto employerJoinDto) {
-        this.employerId = employerJoinDto.getEmployerId();
-        this.employerPw = employerJoinDto.getEmployerPw();
+    public Employer(EmployerJoinForm employerJoinForm) {
+        this.employerId = employerJoinForm.getEmployerId();
+        this.employerPw = employerJoinForm.getEmployerPw();
     }
 
     @Builder
