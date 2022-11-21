@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>고용자 메인</title>
+    <style>
+        table,
+        table tr,
+        table tr th,
+        table tr td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 <h1>지역선택</h1>
@@ -11,29 +19,151 @@
 <div class="sigungu"></div>
 <hr>
 <div class="eupmyeondong"></div>
-
+<button class="applicants-search">검색</button>
+<hr>
+<div class="employInfo">
+    <label for="pay">일당</label>
+    <input type="text" name="pay" id="pay">
+    <br>
+    <label for="workLevel">작업 난이도 (1~5)</label>
+    <select name="workLevel" id="workLevel">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <label for="workContent">작업 내용</label><br>
+    <textarea name="workContent" id="workContent" cols="30" rows="10"></textarea>
+</div>
+<hr>
 <h1>근로자 목록</h1>
+<table class="applicantList">
+    <tr>
+        <th>이름</th>
+        <th>성별</th>
+        <th>나이</th>
+        <th>경력</th>
+        <th>고용</th>
+    </tr>
+</table>
 <div class="worker-list"></div>
 
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/js/select-local.js"></script>
+<script src="/js/employer-local.js"></script>
 <script>
-    async function getApplicants() {
-        const response = await axios.post("http://localhost:8080/employer/main/workerList");
+    const workerList = [];
+
+    const searchBtn = document.querySelector('.applicants-search');
+
+    searchBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (codeSido != undefined && codeSigungu != undefined && codeEupmyeondong.length > 0) {
+            console.log(codeSido);
+            console.log(codeSigungu);
+            console.log(codeEupmyeondong);
+            searchApplicants();
+        }
+    });
+
+    async function searchApplicants() {
+        const response = await axios({
+            method: 'POST',
+            url: 'http://localhost:8080/employer/main/workerList',
+            data: {
+                sidoCode: codeSido,
+                sigunguCode: codeSigungu,
+                eupmyeondongCodes: codeEupmyeondong,
+            }
+        });
+        console.log(response);
         console.log(response.data);
+        console.log(response.data.length);
+
+        // if (response.data.length != 0) {
+        //     alert('검색되었습니다.');
+        // } else {
+        //     alert('검색에 실패했습니다.')
+        // }
+
+        const applicantTable = document.querySelector('.applicantList');
+
+        let trTag = document.createElement('tr');
+        let nameTdTag = document.createElement('td');
+        let genderTdTag = document.createElement('td');
+        let ageTdTag = document.createElement('td');
+        let careerTdTag = document.createElement('td');
+        let employBtn = document.createElement('button');
+
+        const applicants = response.data;
+        for (let i in applicants) {
+
+            const worker = applicants[i];
+            console.log(worker);
+            if (!workerList.includes(worker.workerInfoIdx)) {
+                workerList.push(worker.workerInfoIdx);
+
+                trTag.appendChild(nameTdTag);
+                trTag.appendChild(genderTdTag);
+                trTag.appendChild(ageTdTag);
+                trTag.appendChild(careerTdTag);
+                trTag.appendChild(employBtn);
+
+                applicantTable.append(nameTdTag);
+                applicantTable.append(genderTdTag);
+                applicantTable.append(ageTdTag);
+                applicantTable.append(careerTdTag);
+                applicantTable.append(employBtn);
+                applicantTable.append(trTag);
+
+                nameTdTag.innerText = worker.workerName;
+                genderTdTag.innerText = worker.workerGender;
+                const today = new Date().getFullYear();
+                const birthYear = worker.workerBirth.split('-')[0];
+
+                ageTdTag.innerText = '만 ' + (today - birthYear) + '세';
+                if (worker.workerCareer != null) {
+                    careerTdTag.innerText = worker.workerCareer;
+                } else {
+                    careerTdTag.innerText = '';
+                }
+                employBtn.innerText = '고용';
+                employBtn.type = 'submit';
+            }
+
+            employBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+                const pay = document.querySelector('#pay').value;
+                console.log(pay);
+                doEmploy(worker.workerInfoIdx, pay);
+            });
+
+        }
 
     }
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', onloaded());
 
-    function onloaded() {
-        getSidoList();
-        getApplicants();
+    async function doEmploy(workerInfoIdx, pay) {
+        const response = await axios({
+            method: 'POST',
+            url: 'http://localhost:8080/employer/main/doEmploy',
+            data: {
+                sidoCode: codeSido,
+                sigunguCode: codeSigungu,
+                eupmyeondongCode: codeEupmyeondong[0],
+                workerInfoIdx: workerInfoIdx,
+                workPay: pay,
+            }
+        });
+        if (response.data === 'ok') {
+            alert('고용했습니다.');
+        } else {
+            alert('고용에 실패했습니다.')
+        }
     }
+
+
 </script>
+
 </body>
 </html>

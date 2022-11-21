@@ -13,6 +13,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Slf4j
@@ -99,5 +100,39 @@ public class WorkerRepositoryImpl implements WorkerRepository {
                     .build();
             return workerInfo;
         }));
+    }
+
+    @Override
+    public Boolean applyJob(Long localCodeIdx, Long workerInfoIdx) {
+        String sql = "INSERT INTO tbl_apply_job(apply_time, local_code_idx, worker_info_idx, apply_status) " +
+                "VALUES(:applyTime, :localCodeIdx, :workerInfoIdx, :applyStatus)";
+
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("applyTime", LocalDateTime.now())
+                .addValue("localCodeIdx", localCodeIdx)
+                .addValue("workerInfoIdx", workerInfoIdx)
+                .addValue("applyStatus", false);
+
+        int update = template.update(sql, param);
+        if (update != 1) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void modifyApplyStatus(Long workerInfoIdx, Long localCodeIdx) {
+
+        String sql = "UPDATE tbl_apply_job " +
+                "SET apply_status = :applyStatus " +
+                "WHERE worker_info_idx = :workerInfoIdx AND local_code_idx = :localCodeIdx";
+
+        log.info("modifyApplyStatus SQL = {}", sql);
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("applyStatus", true)
+                .addValue("workerInfoIdx", workerInfoIdx)
+                .addValue("localCodeIdx", localCodeIdx);
+
+        template.update(sql, param);
     }
 }

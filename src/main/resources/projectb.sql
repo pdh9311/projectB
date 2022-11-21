@@ -80,17 +80,18 @@ CREATE TABLE IF NOT EXISTS `tbl_apply_job` (
   `apply_time` DATETIME(6) NOT NULL,
   `local_code_idx` BIGINT NOT NULL,
   `worker_info_idx` BIGINT NOT NULL,
-  `apply_status` BOOLEAN NOT NULL
+  `apply_status` BOOLEAN NOT NULL -- 근로자의 고용상태 확인용
 ) ENGINE=INNODB CHARSET='utf8mb4' COLLATE='utf8mb4_general_ci';
 
 -- 고용내역 리스트 정보
 CREATE TABLE IF NOT EXISTS `tbl_job_history` (
-  `history_time` DATETIME(6) NOT NULL,
+  `history_time` DATETIME(6) NOT NULL, -- 근로자 고용한 시간
   `worker_info_idx` BIGINT NOT NULL,
   `employer_info_idx` BIGINT NOT NULL,
   `pay` INT NOT NULL,
-  `worker_status` VARCHAR(10) NOT NULL,
-  `payment_status` BOOLEAN NOT NULL
+  `worker_status` VARCHAR(10) NOT NULL, -- 근로자의 작업 상태 확인용 (고용됨, 출근완료, 근무중, 작업완료)
+  `payment_status` BOOLEAN NOT NULL -- 미지불(false), 지불(true)
+# , `work_content` TEXT
 ) ENGINE=INNODB CHARSET='utf8mb4' COLLATE='utf8mb4_general_ci';
 
 -- 지역정보

@@ -39,16 +39,49 @@ public class WorkerInfo {
     }
 
     @Builder
-    public WorkerInfo(Long workerInfoIdx, String workerName, String workerEmail, String workerGender, String workerPhone, LocalDate workerBirth, Boolean agreeService, Boolean agreePersonalInfo, Boolean agreeSms, Boolean agreeEmail) {
+    public WorkerInfo(Long workerInfoIdx, String workerName, String workerEmail, String workerGender, String workerPhone, LocalDate workerBirth, String workerCareer, String workerPhoto1, String workerPhoto2, String bankName, String bankAccountNumber, Long point, Boolean agreeService, Boolean agreePersonalInfo, Boolean agreeSms, Boolean agreeEmail) {
         this.workerInfoIdx = workerInfoIdx;
         this.workerName = workerName;
         this.workerEmail = workerEmail;
         this.workerGender = workerGender;
         this.workerPhone = workerPhone;
         this.workerBirth = workerBirth;
+        this.workerCareer = workerCareer;
+        this.workerPhoto1 = workerPhoto1;
+        this.workerPhoto2 = workerPhoto2;
+        this.bankName = bankName;
+        this.bankAccountNumber = bankAccountNumber;
+        this.point = point;
         this.agreeService = agreeService;
         this.agreePersonalInfo = agreePersonalInfo;
         this.agreeSms = agreeSms;
         this.agreeEmail = agreeEmail;
     }
+
+    //    @Builder
+//    public WorkerInfo(Long workerInfoIdx, String workerName, String workerEmail, String workerGender, String workerPhone, LocalDate workerBirth, Boolean agreeService, Boolean agreePersonalInfo, Boolean agreeSms, Boolean agreeEmail) {
+//        this.workerInfoIdx = workerInfoIdx;
+//        this.workerName = workerName;
+//        this.workerEmail = workerEmail;
+//        this.workerGender = workerGender;
+//        this.workerPhone = workerPhone;
+//        this.workerBirth = workerBirth;
+//        this.agreeService = agreeService;
+//        this.agreePersonalInfo = agreePersonalInfo;
+//        this.agreeSms = agreeSms;
+//        this.agreeEmail = agreeEmail;
+//    }
+
+//    @Builder
+//    public WorkerInfo(Long workerInfoIdx, String workerName, String workerEmail, String workerGender, String workerPhone, LocalDate workerBirth, String workerCareer, String workerPhoto1, String workerPhoto2) {
+//        this.workerInfoIdx = workerInfoIdx;
+//        this.workerName = workerName;
+//        this.workerEmail = workerEmail;
+//        this.workerGender = workerGender;
+//        this.workerPhone = workerPhone;
+//        this.workerBirth = workerBirth;
+//        this.workerCareer = workerCareer;
+//        this.workerPhoto1 = workerPhoto1;
+//        this.workerPhoto2 = workerPhoto2;
+//    }
 }

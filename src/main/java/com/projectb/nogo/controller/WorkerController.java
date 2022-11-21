@@ -9,9 +9,7 @@ import com.projectb.nogo.service.WorkerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -60,10 +58,15 @@ public class WorkerController {
         return "redirect:/worker/main";
     }
 
-//    @PostMapping("/apply")
-//    @ResponseBody
-//    public String apply(LocalCodeDto localCodeDto) {
-//        // 세션에서 근로자 정보 가져와서 선택한 지역에 지원하기 ..
-//        return "ok";
-//    }
+    @PostMapping("/main/apply")
+    @ResponseBody
+    public String apply(@RequestBody LocalCodeDto localCodeDto) {
+        // 세션에서 근로자 정보 가져와서 선택한 지역에 지원하기 ..
+        log.info("localCodeDto={}", localCodeDto);
+        Boolean result = workerService.applyJob(localCodeDto);
+        if (result == false) {
+            return "fail";
+        }
+        return "ok";
+    }
 }

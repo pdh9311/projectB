@@ -4,14 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
 @ToString
-public class LocalCodeDto {
+public class EmployDto {
+
     private String sidoCode;
     private String sigunguCode;
-    private List<String> eupmyeondongCodes = new ArrayList<>();
+    private String eupmyeondongCode;
+    private Long workerInfoIdx;
+    private Long workPay;
+
 }

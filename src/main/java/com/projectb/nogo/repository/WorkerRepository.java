@@ -19,4 +19,10 @@ public interface WorkerRepository {
     // 키값으로 회원 정보 가져오기
     Optional<WorkerInfo> findByWorkerInfoIdx(Long workerInfoIdx);
 
+    // 지역 키값으로 근로자가 지원
+    Boolean applyJob(Long localCodeIdx, Long workerInfoIdx);
+
+    // 근로자의 지원상태를 변경
+    void modifyApplyStatus(Long workerInfoIdx, Long localCodeIdx);
+
 }

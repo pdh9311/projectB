@@ -2,8 +2,11 @@ package com.projectb.nogo.repository;
 
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.domain.EmployerInfo;
+import com.projectb.nogo.domain.WorkerInfo;
+import com.projectb.nogo.dto.EmployDto;
 import com.projectb.nogo.dto.EmployerLoginForm;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface EmployerRepository {
@@ -20,5 +23,9 @@ public interface EmployerRepository {
     // 외래키값으로 회원 정보 가져오기
     Optional<EmployerInfo> findByEmployerInfoIdx(Long employerInfoIdx);
 
+    // 일하려 신청한 지원자들 조회
+    List<WorkerInfo> findApplicants(List<Long> localCodeIdxes);
 
+    // 고용내역 추가
+    Boolean addEmploy(EmployDto employDto);
 }
