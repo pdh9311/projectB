@@ -44,6 +44,11 @@ GROUP BY eupmyeondong_code;
 
 SELECT *
 FROM tbl_worker_info;
+
+INSERT INTO tbl_worker_info(worker_name, worker_birth, worker_gender, worker_email, worker_phone, agree_service, agree_personal_info)
+VALUES ('hihi', '2020-11-11', 'man', 'worker@wokre.com', '010-1111', 1, 1);
+
+
 SELECT *
 FROM tbl_worker;
 
