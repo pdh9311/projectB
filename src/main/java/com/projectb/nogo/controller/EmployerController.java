@@ -2,6 +2,7 @@ package com.projectb.nogo.controller;
 
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.domain.EmployerInfo;
+import com.projectb.nogo.dto.JobHistoryDto;
 import com.projectb.nogo.domain.WorkerInfo;
 import com.projectb.nogo.dto.EmployDto;
 import com.projectb.nogo.dto.EmployerJoinForm;
@@ -11,6 +12,7 @@ import com.projectb.nogo.service.EmployerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -78,4 +80,15 @@ public class EmployerController {
         }
         return "ok";
     }
+
+    @GetMapping("/jobHistory")
+    public String jobHistory(Model model) {
+        // TODO: 세션에서 현재 로그인한 고용자의 키값을 가져온다.
+        Long key = 1L;
+        // 고용 내역을 가져온다.
+        List<JobHistoryDto> jobHistories = employerService.getJobHistory(key);
+        model.addAttribute("jobHistories", jobHistories);
+        return "employer/jobHistory";
+    }
+
 }

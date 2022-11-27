@@ -2,6 +2,7 @@ package com.projectb.nogo.repository;
 
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.domain.EmployerInfo;
+import com.projectb.nogo.dto.JobHistoryDto;
 import com.projectb.nogo.domain.WorkerInfo;
 import com.projectb.nogo.dto.EmployDto;
 import com.projectb.nogo.dto.EmployerLoginForm;
@@ -163,5 +164,33 @@ public class EmployerRepositoryImpl implements EmployerRepository {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Optional<List<JobHistoryDto>> getJobHistory(Long employerInfoIdx) {
+        String sql = "SELECT A.history_time, B.worker_name, A.pay, A.worker_status, A.payment_status " +
+                "FROM tbl_job_history AS A " +
+                "INNER JOIN tbl_worker_info AS B " +
+                "ON A.worker_info_idx = B.worker_info_idx " +
+                "WHERE A.employer_info_idx = :employerInfoIdx";
+
+        SqlParameterSource param = new MapSqlParameterSource("employerInfoIdx", employerInfoIdx);
+
+        List<JobHistoryDto> jobHistories = template.query(sql, param, jobHistoryRowMapper());
+
+        return Optional.of(jobHistories);
+    }
+
+    private RowMapper<JobHistoryDto> jobHistoryRowMapper() {
+        return (rs, rowNum) -> {
+            JobHistoryDto jobHistory = JobHistoryDto.builder()
+                    .historyTime(rs.getTimestamp("history_time").toLocalDateTime())
+                    .workerName(rs.getString("worker_name"))
+                    .pay(rs.getInt("pay"))
+                    .workerStatus(rs.getString("worker_status"))
+                    .paymentStatus(rs.getBoolean("payment_status"))
+                    .build();
+            return jobHistory;
+        };
     }
 }

@@ -105,4 +105,6 @@ UPDATE tbl_apply_job
     SET apply_status = true
     WHERE worker_info_idx = 4 AND local_code_idx = 144;
 
-SELECT * FROM tbl_apply_job;
+SELECT * FROM tbl_apply_job
+
+SELECT * FROM tbl_job_history;

@@ -2,6 +2,7 @@ package com.projectb.nogo.service;
 
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.domain.EmployerInfo;
+import com.projectb.nogo.dto.JobHistoryDto;
 import com.projectb.nogo.domain.WorkerInfo;
 import com.projectb.nogo.dto.EmployDto;
 import com.projectb.nogo.dto.EmployerLoginForm;
@@ -57,5 +58,11 @@ public class EmployerServiceImpl implements EmployerService {
         workerRepository.modifyApplyStatus(employDto.getWorkerInfoIdx(), localCodeIdx);
         // 고용내역에 추가
         return employerRepository.addEmploy(employDto);
+    }
+
+    @Override
+    public List<JobHistoryDto> getJobHistory(Long employerInfoIdx) {
+        List<JobHistoryDto> jobHistories = employerRepository.getJobHistory(employerInfoIdx).get();
+        return jobHistories;
     }
 }

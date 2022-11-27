@@ -2,6 +2,7 @@ package com.projectb.nogo.repository;
 
 import com.projectb.nogo.domain.Employer;
 import com.projectb.nogo.domain.EmployerInfo;
+import com.projectb.nogo.dto.JobHistoryDto;
 import com.projectb.nogo.domain.WorkerInfo;
 import com.projectb.nogo.dto.EmployDto;
 import com.projectb.nogo.dto.EmployerLoginForm;
@@ -28,4 +29,7 @@ public interface EmployerRepository {
 
     // 고용내역 추가
     Boolean addEmploy(EmployDto employDto);
+
+    // 고용 내역 가져오기
+    Optional<List<JobHistoryDto>> getJobHistory(Long employerInfoIdx);
 }
