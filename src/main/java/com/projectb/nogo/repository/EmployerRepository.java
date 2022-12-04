@@ -28,7 +28,7 @@ public interface EmployerRepository {
     List<WorkerInfo> findApplicants(List<Long> localCodeIdxes);
 
     // 고용내역 추가
-    Boolean addEmploy(EmployDto employDto);
+    Boolean addEmploy(EmployDto employDto, Long localCodeIdx);
 
     // 고용 내역 가져오기
     Optional<List<JobHistoryDto>> getJobHistory(Long employerInfoIdx);

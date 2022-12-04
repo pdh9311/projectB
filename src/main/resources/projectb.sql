@@ -18,22 +18,22 @@ DROP TABLE IF EXISTS tbl_transfer_history;
 -- 근로자 개인정보
 CREATE TABLE IF NOT EXISTS `tbl_worker_info`
 (
-    `worker_info_idx`     BIGINT        NOT NULL AUTO_INCREMENT,
-    `worker_name`         VARCHAR(50)   NOT NULL,
-    `worker_birth`        DATE          NOT NULL,      -- VARCHAR(8) → DATE
-    `worker_gender`       VARCHAR(10)   NOT NULL,      -- BOOLEAN → VARCHAR(10)
-    `worker_email`        VARCHAR(50)   NOT NULL,
-    `worker_phone`        VARCHAR(20)   NOT NULL,
-    `worker_career`       TEXT          DEFAULT NULL,
-    `worker_photo_1`      VARCHAR(255)  DEFAULT NULL,
-    `worker_photo_2`      VARCHAR(255)  DEFAULT NULL,
-    `bank_name`           VARCHAR(20)   DEFAULT NULL, -- NOT NULL → DEFAULT NULL
-    `bank_account_number` VARCHAR(20)   DEFAULT NULL, -- NOT NULL → DEFAULT NULL
-    `point`               BIGINT        DEFAULT 0,    -- NOT NULL → DEFAULT 0
-    `agree_service`       BOOLEAN       NOT NULL,
-    `agree_personal_info` BOOLEAN       NOT NULL,
-    `agree_sms`           BOOLEAN       DEFAULT NULL,
-    `agree_email`         BOOLEAN       DEFAULT NULL,
+    `worker_info_idx`     BIGINT      NOT NULL AUTO_INCREMENT,
+    `worker_name`         VARCHAR(50) NOT NULL,
+    `worker_birth`        DATE        NOT NULL,      -- VARCHAR(8) → DATE
+    `worker_gender`       VARCHAR(10) NOT NULL,      -- BOOLEAN → VARCHAR(10)
+    `worker_email`        VARCHAR(50) NOT NULL,
+    `worker_phone`        VARCHAR(20) NOT NULL,
+    `worker_career`       TEXT         DEFAULT NULL,
+    `worker_photo_1`      VARCHAR(255) DEFAULT NULL,
+    `worker_photo_2`      VARCHAR(255) DEFAULT NULL,
+    `bank_name`           VARCHAR(20)  DEFAULT NULL, -- NOT NULL → DEFAULT NULL
+    `bank_account_number` VARCHAR(20)  DEFAULT NULL, -- NOT NULL → DEFAULT NULL
+    `point`               BIGINT       DEFAULT 0,    -- NOT NULL → DEFAULT 0
+    `agree_service`       BOOLEAN     NOT NULL,
+    `agree_personal_info` BOOLEAN     NOT NULL,
+    `agree_sms`           BOOLEAN      DEFAULT NULL,
+    `agree_email`         BOOLEAN      DEFAULT NULL,
     PRIMARY KEY (`worker_info_idx`)
 ) ENGINE = INNODB
   CHARSET = 'utf8mb4'
@@ -42,9 +42,10 @@ CREATE TABLE IF NOT EXISTS `tbl_worker_info`
 -- 근로자 로그인 정보
 CREATE TABLE IF NOT EXISTS `tbl_worker`
 (
-    `login_type`      INT          DEFAULT 0, -- 0: 일반로그인, 1: 네이버로그인, 2:카카오로그인
+    `login_type`      INT     DEFAULT 0, -- 0: 일반로그인, 1: 네이버로그인, 2:카카오로그인
     `worker_id`       VARCHAR(255) NOT NULL,
     `worker_pw`       VARCHAR(255) NOT NULL,
+    `worker_status`   BOOLEAN DEFAULT 1,
     `worker_info_idx` BIGINT       NOT NULL,
     PRIMARY KEY (`login_type`, `worker_id`),
     FOREIGN KEY (`worker_info_idx`) REFERENCES `tbl_worker_info` (`worker_info_idx`)
@@ -77,10 +78,10 @@ CREATE TABLE IF NOT EXISTS `tbl_employer_info`
 -- 고용자 로그인 정보
 CREATE TABLE IF NOT EXISTS `tbl_employer`
 (
-    `employer_id`       VARCHAR(255)    NOT NULL,
-    `employer_pw`       VARCHAR(255)    NOT NULL,
-    `employer_status`   BOOLEAN         DEFAULT 1,
-    `employer_info_idx` BIGINT          NOT NULL,
+    `employer_id`       VARCHAR(255) NOT NULL,
+    `employer_pw`       VARCHAR(255) NOT NULL,
+    `employer_status`   BOOLEAN DEFAULT 1,
+    `employer_info_idx` BIGINT       NOT NULL,
     PRIMARY KEY (`employer_id`),
     FOREIGN KEY (`employer_info_idx`) REFERENCES `tbl_employer_info` (`employer_info_idx`)
 ) ENGINE = INNODB
@@ -104,6 +105,7 @@ CREATE TABLE IF NOT EXISTS `tbl_job_history`
     `history_time`      DATETIME(6) NOT NULL, -- 근로자 고용한 시간
     `worker_info_idx`   BIGINT      NOT NULL,
     `employer_info_idx` BIGINT      NOT NULL,
+    `local_code_idx`    BIGINT      NOT NULL,
     `pay`               INT         NOT NULL,
     `worker_status`     VARCHAR(10) NOT NULL, -- 근로자의 작업 상태 확인용 (고용됨, 출근완료, 근무중, 작업완료)
     `payment_status`    BOOLEAN     NOT NULL  -- 미지불(false), 지불(true)

@@ -18,6 +18,9 @@
         <th>근로자</th>
         <th>일당</th>
         <th>근무상태</th>
+        <th>시,도</th>
+        <th>시,군,구</th>
+        <th>읍,면,동</th>
         <th>정산상태</th>
         <th>정산</th>
     </tr>
@@ -26,6 +29,9 @@
         <td th:text="${jobHistory.workerName}"></td>
         <td th:text="${jobHistory.pay}"></td>
         <td th:text="${jobHistory.workerStatus}"></td>
+        <td th:text="${jobHistory.sido}"></td>
+        <td th:text="${jobHistory.sigungu}"></td>
+        <td th:text="${jobHistory.eupmyeondong}"></td>
         <td th:text="${jobHistory.paymentStatus}"></td>
         <td><button>정산</button></td>
     </tr>

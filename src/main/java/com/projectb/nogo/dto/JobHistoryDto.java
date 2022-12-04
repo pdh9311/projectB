@@ -8,20 +8,14 @@ import java.time.LocalDateTime;
 
 @Getter
 @EqualsAndHashCode
+@Builder
 public class JobHistoryDto {
-
     LocalDateTime historyTime;
     String workerName;
     Integer pay;
     String workerStatus;
     Boolean paymentStatus;
-
-    @Builder
-    public JobHistoryDto(LocalDateTime historyTime, String workerName, Integer pay, String workerStatus, Boolean paymentStatus) {
-        this.historyTime = historyTime;
-        this.workerName = workerName;
-        this.pay = pay;
-        this.workerStatus = workerStatus;
-        this.paymentStatus = paymentStatus;
-    }
+    String sido;
+    String sigungu;
+    String eupmyeondong;
 }

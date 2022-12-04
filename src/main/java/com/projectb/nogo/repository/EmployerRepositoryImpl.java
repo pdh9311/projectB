@@ -147,15 +147,16 @@ public class EmployerRepositoryImpl implements EmployerRepository {
     }
 
     @Override
-    public Boolean addEmploy(EmployDto employDto) {
-        String sql = "INSERT INTO tbl_job_history(history_time, worker_info_idx, employer_info_idx, pay, worker_status, payment_status) " +
-                "VALUES(:historyTime, :workerInfoIdx, :employerInfoIdx, :pay, :workerStatus, :paymentStatus)";
+    public Boolean addEmploy(EmployDto employDto, Long localCodeIdx) {
+        String sql = "INSERT INTO tbl_job_history(history_time, worker_info_idx, employer_info_idx, local_code_idx, pay, worker_status, payment_status) " +
+                "VALUES(:historyTime, :workerInfoIdx, :employerInfoIdx, :localCodeIdx, :pay, :workerStatus, :paymentStatus)";
 
         log.info("addEmploy SQL = {}", sql);
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("historyTime", LocalDateTime.now())
                 .addValue("workerInfoIdx", employDto.getWorkerInfoIdx())
                 .addValue("employerInfoIdx", 1) // TODO: 나중에 세션에서 가져와야함.
+                .addValue("localCodeIdx", localCodeIdx)
                 .addValue("pay", employDto.getWorkPay())
                 .addValue("workerStatus", "고용됨")
                 .addValue("paymentStatus", false);
@@ -168,10 +169,12 @@ public class EmployerRepositoryImpl implements EmployerRepository {
 
     @Override
     public Optional<List<JobHistoryDto>> getJobHistory(Long employerInfoIdx) {
-        String sql = "SELECT A.history_time, B.worker_name, A.pay, A.worker_status, A.payment_status " +
+        String sql = "SELECT A.history_time, B.worker_name, A.pay, A.worker_status, A.payment_status, C.sido_name, C.sigungu_name, C.eupmyeondong_name " +
                 "FROM tbl_job_history AS A " +
                 "INNER JOIN tbl_worker_info AS B " +
                 "ON A.worker_info_idx = B.worker_info_idx " +
+                "INNER JOIN tbl_local_code AS C " +
+                "ON A.local_code_idx = C.local_code_idx " +
                 "WHERE A.employer_info_idx = :employerInfoIdx";
 
         SqlParameterSource param = new MapSqlParameterSource("employerInfoIdx", employerInfoIdx);
@@ -189,6 +192,9 @@ public class EmployerRepositoryImpl implements EmployerRepository {
                     .pay(rs.getInt("pay"))
                     .workerStatus(rs.getString("worker_status"))
                     .paymentStatus(rs.getBoolean("payment_status"))
+                    .sido(rs.getString("sido_name"))
+                    .sigungu(rs.getString("sigungu_name"))
+                    .eupmyeondong(rs.getString("eupmyeondong_name"))
                     .build();
             return jobHistory;
         };

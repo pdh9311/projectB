@@ -57,7 +57,7 @@ public class EmployerServiceImpl implements EmployerService {
         // 근로자의 지원상태를 변경
         workerRepository.modifyApplyStatus(employDto.getWorkerInfoIdx(), localCodeIdx);
         // 고용내역에 추가
-        return employerRepository.addEmploy(employDto);
+        return employerRepository.addEmploy(employDto, localCodeIdx);
     }
 
     @Override
